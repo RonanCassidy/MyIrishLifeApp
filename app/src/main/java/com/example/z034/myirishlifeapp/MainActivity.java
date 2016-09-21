@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void hellomark(String qqqq)
+    public void btnClick(View v)
     {
         EditText text = (EditText) findViewById(R.id.editText);
         text.setText("I told you to leave me alone");
