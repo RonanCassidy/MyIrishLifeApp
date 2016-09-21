@@ -26,4 +26,17 @@
         android:clickable="true"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:id="@+id/qrButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Scan QR Code"
+        android:textSize="18dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true">
+    </Button>
+
 </RelativeLayout>
