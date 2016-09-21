@@ -11,29 +11,20 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        button = (Button) findViewById(R.id.qrButton);
-
-        // Capture button clicks
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-
-                // Start NewActivity.class
-                Intent myIntent = new Intent(MainActivity.this,
-                        QRScannerActivity.class);
-                startActivity(myIntent);
-            }
-        });
     }
     public void btnClick(View v)
     {
         EditText text = (EditText) findViewById(R.id.editText);
         text.setText("I told you to leave me alone");
+    }
+    public void qrClick(View v) {
+
+        // Start NewActivity.class
+        Intent myIntent = new Intent(getApplicationContext(), QRScannerActivity.class);
+        startActivity(myIntent);
     }
 }

@@ -1,75 +1,49 @@
 package com.example.z034.myirishlifeapp;
 
+
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.support.v7.app.AlertDialog;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.net.Uri;
-import android.widget.Toast;
 
-/**
- * Created by s970 on 20/09/2016.
- */
 
-public class QRScannerActivity extends Activity {
+import com.google.zxing.Result;
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-    static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
+
+public class QRScannerActivity extends Activity implements ZXingScannerView.ResultHandler {
+
+    private ZXingScannerView mScannerView;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //set the main content layout of the Activity
         setContentView(R.layout.qrscanner);
 
-        try {
-            //start the scanning activity from the com.google.zxing.client.android.SCAN intent
-            Intent intent = new Intent(ACTION_SCAN);
-            intent.setPackage("com.google.zxing.client.android");
-            intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-            startActivityForResult(intent, 0);
-        } catch (ActivityNotFoundException anfe) {
-            //on catch, show the download dialog
-            showDialog(QRScannerActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
-        }
+        mScannerView = new ZXingScannerView(this);
+        setContentView(mScannerView);
+        mScannerView.setResultHandler(this);
+        mScannerView.startCamera();
     }
 
-    //alert dialog for downloadDialog
-    private static AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
-        AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
-        downloadDialog.setTitle(title);
-        downloadDialog.setMessage(message);
-        downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Uri uri = Uri.parse("market://search?q=pname:" + "com.google.zxing.client.android");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                try {
-                    act.startActivity(intent);
-                } catch (ActivityNotFoundException anfe) {
-
-                }
-            }
-        });
-        downloadDialog.setNegativeButton(buttonNo, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });
-        return downloadDialog.show();
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mScannerView.stopCamera();
     }
+    @Override
+    public void handleResult(Result result)
+    {
+        Log.v("handle result", result.getText());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Scan Result");
+        builder.setMessage(result.getText());
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
 
-    //on ActivityResult method
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == 0) {
-
-            if (resultCode==RESULT_OK) {
-                //get the extras that are returned from the intent
-                String contents = intent.getStringExtra("SCAN_RESULT");
-                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-                Toast toast = Toast.makeText(this, "Content:" + contents + " Format:" + format, Toast.LENGTH_LONG);
-                toast.show();
-            }
-        }
+        mScannerView.resumeCameraPreview(this);
     }
 }
