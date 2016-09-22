@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MyIrishLifeApp</string>
+    <!-- Login screen -->
+    <string name="Login_RegisterButton">Register</string>
+    <string name="Login_LoginButton">Login</string>
+    <string name="Login_EnterPinHint">Enter Pin</string>
+    <string name="Login_ForgottenPin">Forgotten Pin?</string>
+
 </resources>
