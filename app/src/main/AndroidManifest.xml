@@ -19,7 +19,8 @@
         </activity>
     <activity android:name=".ContactUsActivity">
     </activity>
-
+        <activity android:name=".UserDetailActivity"
+            android:label="My Details"/>
     </application>
 
 </manifest>
