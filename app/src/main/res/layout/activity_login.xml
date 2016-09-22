@@ -11,28 +11,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.z034.myirishlifeapp.LoginActivity">
 
-    <ImageView
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/il_launcher"
-        android:layout_marginTop="71dp"
-        android:id="@+id/imageView3"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:scaleType="fitXY"
-        android:width="820dp"
-        android:adjustViewBounds="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword|numberPassword"
-        android:ems="10"
-        android:layout_below="@+id/imageView3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
-        android:id="@+id/LoginPin"
-        android:hint="@string/Login_EnterPinHint" />
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
 
     <Button
         android:text="@string/Login_ForgottenPin"
@@ -42,9 +27,10 @@
         android:layout_alignLeft="@+id/LoginPin"
         android:layout_alignStart="@+id/LoginPin"
         android:id="@+id/ForgottenPin"
-        android:background="#FFFFF"
+        android:background="#FFF"
         android:textColor="#808080"
-        android:onClick="ForgottenPinButtonClick (LoginActivity)" />
+        android:onClick="RegisterButtonClick"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
         android:text="@string/Login_LoginButton"
@@ -58,7 +44,7 @@
         android:textSize="16sp"
         android:textColor="#FFFF"
         android:background="@drawable/rounded_edittext"
-        android:onClick="LoginButtonClick (LoginActivity)" />
+        android:onClick="LoginButtonClick" />
 
     <Button
         android:text="@string/Login_RegisterButton"
@@ -73,6 +59,32 @@
         android:layout_alignLeft="@+id/Login"
         android:layout_alignStart="@+id/Login"
         android:id="@+id/RegisterLogin"
-        android:onClick="RegisterButtonClick (LoginActivity)" />
-</RelativeLayout>
+        android:onClick="RegisterButtonClick)" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/illogo"
+        android:id="@+id/imageView3"
+        android:minWidth="300dp"
+        android:minHeight="300dp"
+        android:adjustViewBounds="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword|numberPassword"
+        android:ems="10"
+        android:layout_marginTop="36dp"
+        android:id="@+id/LoginPin"
+        android:hint="@string/Login_EnterPinHint"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignRight="@+id/Login"
+        android:layout_alignEnd="@+id/Login"
+        android:textColorLink="?android:attr/textColorHint" />
+
+
+</RelativeLayout>

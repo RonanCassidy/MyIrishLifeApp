@@ -1,8 +1,13 @@
 package com.example.z034.myirishlifeapp;
 
-/**
- * Created by x339 on 22/09/2016.
- */
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
 
-public class AuthenticatorService {
+public class AuthenticatorService extends Service {
+    @Override
+    public IBinder onBind(Intent intent) {
+        Authenticator authenticator = new Authenticator(this);
+        return authenticator.getIBinder();
+    }
 }

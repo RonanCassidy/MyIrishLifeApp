@@ -1,7 +1,6 @@
 package com.example.z034.myirishlifeapp;
 
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 /**
