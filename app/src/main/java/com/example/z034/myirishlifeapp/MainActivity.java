@@ -27,4 +27,10 @@ public class MainActivity extends AppCompatActivity {
         Intent myIntent = new Intent(getApplicationContext(), QRScannerActivity.class);
         startActivity(myIntent);
     }
+
+    public void userDetailClick(View v) {
+
+        Intent myIntent = new Intent(getApplicationContext(), UserDetailActivity.class);
+        startActivity(myIntent);
+    }
 }
