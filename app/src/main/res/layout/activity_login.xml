@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.z034.myirishlifeapp.LoginActivity">
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+    <Button
+        android:text="@string/Login_ForgottenPin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LoginPin"
+        android:layout_alignLeft="@+id/LoginPin"
+        android:layout_alignStart="@+id/LoginPin"
+        android:id="@+id/ForgottenPin"
+        android:background="#FFF"
+        android:textColor="#808080"
+        android:onClick="RegisterButtonClick"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <Button
+        android:text="@string/Login_LoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ForgottenPin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:id="@+id/Login"
+        android:width="220dp"
+        android:textSize="16sp"
+        android:textColor="#FFFF"
+        android:background="@drawable/rounded_edittext"
+        android:onClick="LoginButtonClick" />
+
+    <Button
+        android:text="@string/Login_RegisterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:width="220dp"
+        android:textSize="16sp"
+        android:textColor="#FFFF"
+        android:background="@drawable/rounded_edittext"
+        android:layout_below="@+id/Login"
+        android:layout_alignLeft="@+id/Login"
+        android:layout_alignStart="@+id/Login"
+        android:id="@+id/RegisterLogin"
+        android:onClick="RegisterButtonClick)" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/illogo"
+        android:id="@+id/imageView3"
+        android:minWidth="300dp"
+        android:minHeight="300dp"
+        android:adjustViewBounds="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword|numberPassword"
+        android:ems="10"
+        android:layout_marginTop="36dp"
+        android:id="@+id/LoginPin"
+        android:hint="@string/Login_EnterPinHint"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignRight="@+id/Login"
+        android:layout_alignEnd="@+id/Login"
+        android:textColorLink="?android:attr/textColorHint" />
+
+
+</RelativeLayout>
