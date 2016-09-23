@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.z034.myirishlifeapp.TabActivity">
+    <item
+        android:id="@+id/action_refresh"
+        android:orderInCategory="100"
+        android:icon="@mipmap/ic_launcher"
+        android:showAsAction="always"
+        android:title="Refresh" />
+    <item
+        android:id="@+id/action_settings"
+        android:title="Settings">
+    </item>
+</menu>

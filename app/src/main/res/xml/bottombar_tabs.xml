@@ -1,0 +1,14 @@
+<tabs>
+    <tab
+        id="@+id/tab_favorites"
+        icon="@mipmap/il_launcher"
+        title="Favorites" />
+    <tab
+        id="@+id/tab_nearby"
+        icon="@mipmap/ic_launcher"
+        title="Nearby" />
+    <tab
+        id="@+id/tab_friends"
+        icon="@mipmap/irl_pic"
+        title="Friends" />
+</tabs>

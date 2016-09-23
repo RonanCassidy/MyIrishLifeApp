@@ -27,4 +27,11 @@ public class MainActivity extends AppCompatActivity {
         Intent myIntent = new Intent(getApplicationContext(), QRScannerActivity.class);
         startActivity(myIntent);
     }
+    public void btnIrlClick(View v)
+    {
+        // Start NewActivity.class
+        Intent myIntent = new Intent(getApplicationContext(), WebActivity.class);
+        myIntent.putExtra("link", "www.irishlife.ie");
+        startActivity(myIntent);
+    }
 }
