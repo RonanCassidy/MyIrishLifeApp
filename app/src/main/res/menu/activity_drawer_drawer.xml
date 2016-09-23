@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/my_details"
+            android:title="My Details" />
+
+        <item
+            android:id="@+id/my_policies"
+            android:title="My Policies" />
+
+        <item
+            android:id="@+id/add_policy"
+            android:title="Add a Policy" />
+
+        <item
+            android:id="@+id/web_login"
+            android:title="Web Login" />
+        <item
+            android:id="@+id/tools"
+            android:title="My Toolbox" />
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/inbox"
+            android:title="Inbox" />
+        <item
+            android:id="@+id/contact_us"
+            android:title="Contact Us" />
+        <item
+            android:id="@+id/about"
+            android:title="About" />
+    </group>
+
+
+</menu>
