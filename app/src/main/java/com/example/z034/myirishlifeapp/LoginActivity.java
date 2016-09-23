@@ -14,6 +14,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         userPinField = (EditText) findViewById(R.id.LoginPin);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void LoginButtonClick(View v)

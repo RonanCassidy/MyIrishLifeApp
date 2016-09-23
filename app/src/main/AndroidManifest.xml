@@ -28,11 +28,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QRScannerActivity" />
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".WebActivity"></activity>
-        <activity android:name=".ContactUsActivity"/>
-        <activity android:name=".UserDetailActivity" android:label="My Details"/>
+
+        <activity android:name=".QRScannerActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+
+        <activity android:name=".LoginActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity"/>
+        </activity>
+
+        <activity android:name=".WebActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".ContactUsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+
+        <activity android:name=".UserDetailActivity" android:label="My Details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+
         <service
             android:name=".AuthenticatorService"
             android:exported="false">
