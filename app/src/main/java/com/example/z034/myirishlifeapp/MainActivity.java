@@ -16,22 +16,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    public void btnClick(View v)
-    {
-        EditText text = (EditText) findViewById(R.id.editText);
-        text.setText("I told you to leave me alone");
-    }
     public void qrClick(View v) {
+        // Start NewActivity.class
+        Intent qrIntent = new Intent(getApplicationContext(), QRScannerActivity.class);
+        startActivity(qrIntent);
+    }
+    public void btnIrlClick(View v) {
+        // Start NewActivity.class
+        Intent webIntent = new Intent(getApplicationContext(), WebActivity.class);
+        webIntent.putExtra("link", "www.irishlife.ie");
+        startActivity(webIntent);
+    }
+    public void contactUsClick(View v) {
 
         // Start NewActivity.class
-        Intent myIntent = new Intent(getApplicationContext(), QRScannerActivity.class);
-        startActivity(myIntent);
+        Intent contactIntent = new Intent(getApplicationContext(), ContactUsActivity.class);
+        startActivity(contactIntent);
     }
-    public void btnIrlClick(View v)
-    {
-        // Start NewActivity.class
-        Intent myIntent = new Intent(getApplicationContext(), WebActivity.class);
-        myIntent.putExtra("link", "www.irishlife.ie");
-        startActivity(myIntent);
+
+    public void userDetailClick(View v) {
+
+        Intent userDetailIntent = new Intent(getApplicationContext(), UserDetailActivity.class);
+        startActivity(userDetailIntent);
+    }
+    public void loginButtonClick(View v) {
+
+        Intent userDetailIntent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(userDetailIntent);
     }
 }
