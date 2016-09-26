@@ -14,7 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class DrawerActivity extends AppCompatActivity
+public class DrawerActivity extends MainActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
