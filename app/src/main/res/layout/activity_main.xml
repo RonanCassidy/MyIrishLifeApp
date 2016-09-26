@@ -10,8 +10,6 @@
     android:paddingRight="0dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.z034.myirishlifeapp.MainActivity">
-
-
     <Button
         android:id="@+id/qrButton"
         android:layout_width="wrap_content"
@@ -84,6 +82,5 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         app:bb_tabXmlResource="@xml/bottombar" />
-
 
 </RelativeLayout>
