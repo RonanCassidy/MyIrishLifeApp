@@ -32,7 +32,7 @@ import java.util.Random;
 
 import static com.example.z034.myirishlifeapp.R.id.bottomBar;
 import static com.example.z034.myirishlifeapp.R.id.chat_list_view;
-import static com.example.z034.myirishlifeapp.R.id.editText;
+
 
 
 /**

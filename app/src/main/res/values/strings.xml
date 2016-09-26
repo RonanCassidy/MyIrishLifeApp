@@ -25,4 +25,27 @@
         <item>Dedicated to Prabeesh</item>
 
     </string-array>
+
+    <string name="title_activity_drawer">MyIrishLifeApp</string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- Login screen -->
+    <string name="Login_RegisterButton">Register</string>
+    <string name="Login_LoginButton">Login</string>
+    <string name="Login_EnterPinHint">Enter Pin</string>
+    <string name="Login_ForgottenPin">Forgotten Pin?</string>
+    <string name="Login_error_empty_pin">Pin is required</string>
+    <string name="Login_error_invalid_pin">Pin is invalid</string>
+
+    <!-- Home screen -->
+    <string name="Home_PensionPolicy">Pension</string>
+    <string name="Home_HealthPolicy">Health</string>
+    <string name="Home_LifePolicy">Life</string>
+    <string name="Home_AddPolicy">Add Policy</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

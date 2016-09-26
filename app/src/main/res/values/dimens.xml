@@ -7,4 +7,10 @@
     <dimen name="bottombar_right_pad">0dp</dimen>
     <dimen name="bottombar_top_pad">0dp</dimen>
     <dimen name="bottombar_bottom_pad">0dp</dimen>
+
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+
 </resources>

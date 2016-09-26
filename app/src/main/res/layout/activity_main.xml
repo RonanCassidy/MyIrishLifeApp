@@ -11,29 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.z034.myirishlifeapp.MainActivity">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:layout_marginTop="26dp"
-        android:id="@+id/editText"
-
-        android:hint="leave me alone"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:enabled="false"
-        android:textAlignment="center"
-        android:layout_below="@+id/qrButton"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
-        android:id="@+id/textView2" />
 
     <Button
         android:id="@+id/qrButton"
@@ -51,23 +28,62 @@
     </Button>
 
     <Button
-        android:text="Press Me"
-        android:layout_gravity="center"
+        android:text="Contact Us"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:onClick="contactUsClick"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+    <Button
+        android:text="@string/Login_LoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:onClick="btnClick"
-        android:layout_marginTop="31dp"
-        android:layout_below="@+id/editText"
+        android:id="@+id/loginButton"
+        android:width="220dp"
+        android:textSize="16sp"
+        android:textColor="#FFFF"
+        android:background="@drawable/rounded_edittext"
+        android:onClick="loginButtonClick"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/il_launcher"
+        android:id="@+id/irlButton"
+        android:cropToPadding="false"
+        android:scaleType="fitStart"
+        android:onClick="btnIrlClick"
+        android:layout_above="@+id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp" />
+
+    <Button
+        android:text="user details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:onClick="userDetailClick"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:layout_below="@+id/loginButton"
+        android:layout_alignRight="@+id/bottomBar"
+        android:layout_alignEnd="@+id/bottomBar" />
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
-        app:bb_tabXmlResource="@xml/bottombar"
-        android:layout_height="56dp"
-        android:layout_width="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        app:bb_tabXmlResource="@xml/bottombar" />
+
 
 </RelativeLayout>
