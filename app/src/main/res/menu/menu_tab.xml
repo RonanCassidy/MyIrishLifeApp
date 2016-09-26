@@ -4,12 +4,7 @@
     tools:context="com.example.z034.myirishlifeapp.TabActivity">
     <item
         android:id="@+id/action_refresh"
-        android:orderInCategory="100"
-        android:icon="@mipmap/ic_launcher"
-        android:showAsAction="always"
-        android:title="Refresh" />
-    <item
-        android:id="@+id/action_settings"
-        android:title="Settings">
-    </item>
+        android:icon="@drawable/ic_action_refresh"
+        android:title="Refresh"
+        app:showAsAction="ifRoom"/>
 </menu>

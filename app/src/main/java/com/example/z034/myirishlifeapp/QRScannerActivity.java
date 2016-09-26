@@ -22,7 +22,7 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qrscanner);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
         mScannerView.setResultHandler(this);

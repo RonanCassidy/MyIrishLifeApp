@@ -1,5 +1,8 @@
 package com.example.z034.myirishlifeapp;
 
+import static junit.framework.Assert.assertEquals;
+
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
