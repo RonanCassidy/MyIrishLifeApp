@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
-
+import static com.example.z034.myirishlifeapp.R.id.bottomBar;
 public class MainActivity extends AppCompatActivity {
 
 
@@ -24,13 +24,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomBar bottombar =(BottomBar) findViewById(R.id.bottomBar);
+      /*  BottomBar bottombar =(BottomBar) findViewById(R.id.bottomBar);
         bottombar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 if (tabId == R.id.tab_chat && !onStart) {
-                    Toast.makeText(MainActivity.this, "this is my Toast message!!! =)",
-                            Toast.LENGTH_LONG).show();
                     Intent i = new Intent(MainActivity.this, OnlineChat.class);
                     startActivity(i);
                 }
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+*/
         onStart = false;
     }
     public void qrClick(View v) {

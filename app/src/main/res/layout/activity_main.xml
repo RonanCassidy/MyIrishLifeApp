@@ -78,12 +78,4 @@
         android:layout_alignRight="@+id/bottomBar"
         android:layout_alignEnd="@+id/bottomBar" />
 
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar" />
-
-
 </RelativeLayout>

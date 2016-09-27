@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -86,6 +87,7 @@
         android:layout_alignRight="@+id/address"
         android:layout_alignEnd="@+id/address"
         style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_marginBottom="80dp"
         android:background="#50c9b5"/>
 
     <Button
@@ -100,6 +102,7 @@
         android:layout_toLeftOf="@+id/save"
         android:layout_toStartOf="@+id/save"
         style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_marginBottom="80dp"
         android:background="#50c9b5"/>
 
     <Button
@@ -112,6 +115,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/cancel"
         android:layout_toStartOf="@+id/cancel"
+        android:layout_marginBottom="80dp"
         style="@style/Widget.AppCompat.Button.Colored"
         android:background="#50c9b5"/>
 
@@ -191,6 +195,13 @@
         android:layout_alignParentStart="true"
         android:onClick="useEircodeClick"/>
 
-
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        app:bb_tabXmlResource="@xml/bottombar"
+        android:layout_height="56dp"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

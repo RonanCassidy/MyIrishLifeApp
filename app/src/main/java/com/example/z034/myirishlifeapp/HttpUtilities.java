@@ -20,8 +20,9 @@ import java.net.*;
 
 public class HttpUtilities {
 
-    public static final String AuthenticateServerUrl = "http://10.233.204.232:9090/AutService.asmx/";
+    public static final String AuthenticateServerUrl = "http://52.174.106.218/AutService.asmx/";
     public static final String AuthenticateWithPin = "AuthenticateWithPin";
+    public static final String GetUserPolicyDetails = "GetUserPolicyDetails";
     public static final String AuthenticateWithPassword = "AuthenticateWithPassword";
 
     public static void AuthenticateUserWithPassword(String username, String password)
@@ -35,4 +36,12 @@ public class HttpUtilities {
         UserLoginPin loginWithPin = new UserLoginPin(AuthenticateServerUrl, AuthenticateWithPin, query, pinField, context);
         loginWithPin.execute((Void) null);
     }
+
+    public static void RetreivePolicyDetail(String username, String pin, String policyID, Context context)
+    {
+        String query = "userID=" + username + "&" + "pin=" + pin+ "&" + "policyID="+policyID;
+        GetPolicyDetails Singlepolicydetail = new GetPolicyDetails(AuthenticateServerUrl, GetUserPolicyDetails, query, policyID, context);
+        Singlepolicydetail.execute((Void) null);
+    }
+
 }

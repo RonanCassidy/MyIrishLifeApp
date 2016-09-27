@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/PolicyDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Policy_details_title_page"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"/>
+
+    <TextView
+        android:id="@+id/PolicyHoldertext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/PolicyDetails"
+        android:text="Policy Holder:"
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="15dp"
+
+        />
+    <TextView
+        android:id="@+id/PolicyHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/PolicyHoldertext"
+        android:layout_below="@+id/PolicyDetails"
+        android:paddingLeft="50dp"
+        android:text="PolicyHolder Name Here"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/bb_darkBackgroundColor"
+        />
+
+    <TextView
+        android:id="@+id/DOBtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/PolicyHoldertext"
+        android:text="Date Of Birth:"
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="15dp"
+
+        />
+
+    <TextView
+        android:id="@+id/PlanNametext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/DOBtext"
+        android:text="Plan Name:"
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="15dp"
+
+        />
+
+    <TextView
+        android:id="@+id/PlanNumbertext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/PlanNametext"
+        android:text="Plan Number:"
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="15dp"
+
+        />
+
+    <TextView
+        android:id="@+id/PlanTypetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/PlanNumbertext"
+        android:text="Plan Type:"
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="15dp"
+
+        />
+
+    <TextView
+        android:id="@+id/DOB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:text="DOB Here"
+        android:layout_below="@+id/PolicyHolder"
+        android:layout_toRightOf="@+id/PolicyHoldertext"
+        android:layout_toEndOf="@+id/PolicyHoldertext"
+        android:textColor="@color/bb_darkBackgroundColor"
+         />
+
+    <TextView
+        android:id="@+id/PlanName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:text="PlaneName Here"
+        android:layout_alignBaseline="@+id/PlanNametext"
+        android:layout_alignBottom="@+id/PlanNametext"
+        android:layout_toRightOf="@+id/PlanNumbertext"
+        android:layout_toEndOf="@+id/PlanNumbertext"
+        android:textColor="@color/bb_darkBackgroundColor"/>
+
+    <TextView
+        android:id="@+id/PlanNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:text="PlaneNumber Here"
+        android:layout_alignBaseline="@+id/PlanNumbertext"
+        android:layout_alignBottom="@+id/PlanNumbertext"
+        android:layout_toRightOf="@+id/PlanNumbertext"
+        android:layout_toEndOf="@+id/PlanNumbertext"
+        android:textColor="@color/bb_darkBackgroundColor"/>
+
+    <TextView
+        android:id="@+id/PlanType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:text="PlaneType Here"
+        android:layout_alignBaseline="@+id/PlanTypetext"
+        android:layout_alignBottom="@+id/PlanTypetext"
+        android:layout_toRightOf="@+id/PlanNumbertext"
+        android:layout_toEndOf="@+id/PlanNumbertext"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/bb_darkBackgroundColor"/>
+
+    <TextView
+        android:id="@+id/Vartext1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/PlanTypetext"
+        android:text="Var Text 1:"
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="15dp"
+
+        />
+
+    <TextView
+        android:id="@+id/Vartext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Vartext1"
+        android:text="Var Text 2:"
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="15dp"
+
+        />
+
+    <TextView
+        android:id="@+id/Var2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:text="Var Data 2"
+        android:layout_alignBaseline="@+id/Vartext2"
+        android:layout_alignBottom="@+id/Vartext2"
+        android:layout_alignLeft="@+id/Var1"
+        android:layout_alignStart="@+id/Var1"
+        android:textColor="@color/bb_darkBackgroundColor"/>
+
+    <TextView
+        android:id="@+id/Vartext3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Vartext2"
+        android:text="Var Text 3:"
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="15dp"
+
+        />
+
+    <TextView
+        android:id="@+id/Var3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:text="Var Data 3"
+        android:layout_alignBaseline="@+id/Vartext3"
+        android:layout_alignBottom="@+id/Vartext3"
+        android:layout_alignLeft="@+id/Var2"
+        android:layout_alignStart="@+id/Var2"
+        android:textColor="@color/bb_darkBackgroundColor"/>
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text ="Further Details"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:layout_marginTop="50dp"
+        android:id="@+id/btnfurtherdetails"
+        android:layout_below="@+id/Vartext3"
+        android:layout_alignLeft="@+id/PolicyDetails"
+
+        android:textSize="15dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="#50c9b5"
+        android:onClick="FurtherDetailsClick" />
+
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        app:bb_tabXmlResource="@xml/bottombar"
+        android:layout_height="56dp"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:id="@+id/Var1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:text="Var Data 1"
+        android:textColor="@color/bb_darkBackgroundColor"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/DOBtext"
+        android:layout_toEndOf="@+id/DOBtext" />
+
+</RelativeLayout>
