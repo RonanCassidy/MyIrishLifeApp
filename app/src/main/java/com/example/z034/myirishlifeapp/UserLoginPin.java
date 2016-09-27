@@ -51,7 +51,8 @@ public class UserLoginPin extends AsyncTask<Void, Void, Boolean> {
         }
         try {
             URLConnection myconn = myurl.openConnection();
-            InputStream in = new BufferedInputStream(myconn.getInputStream());
+            InputStream blah = myconn.getInputStream();
+            InputStream in = new BufferedInputStream(blah);
             InputStreamReader reader = new InputStreamReader(in);
             BufferedReader br = new BufferedReader(reader);
             String line;

@@ -9,6 +9,38 @@
     <string name="FirstTimeLogin_Register">Register</string>
     <string name="FirstTimeLogin_Submit">Submit</string>
 
+    <string name="title_activity_display_online_chat">DisplayOnlineChat</string>
+    <string name="chathint">Enter Text</string>
+    <string name="BotChat1">  Welcome to customer chat.  </string>
+    <string name="BotChat2"></string>
+    <string name="BotChat3"></string>
+
+    <string-array name="BotChat">
+        <item>Customer Service reply...</item>
+        <item>Answer loading</item>
+        <item>Thats a good question</item>
+        <item>Ill check that now</item>
+        <item>Please provide your policy number</item>
+        <item>That makes no sense</item>
+        <item>Out of office</item>
+        <item>404</item>
+        <item>Gone to the pub</item>
+        <item>Good question</item>
+        <item>Thinking...</item>
+        <item>Not sure</item>
+        <item>I make mistakes growing up. Im not perfect; Im not a robot. -Justin Bieber</item>
+        <item>Im sorry Dave I cant let you do that -Hal 9000</item>
+        <item>Ill be back!</item>
+        <item>Dedicated to Prabeesh</item>
+
+    </string-array>
+
+    <string name="title_activity_drawer">MyIrishLifeApp</string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+
     <!-- Login screen -->
     <string name="Login_RegisterButton">Register</string>
     <string name="Login_LoginButton">Login</string>
@@ -23,6 +55,7 @@
     <string name="Home_LifePolicy">Life</string>
     <string name="Home_AddPolicy">Add Policy</string>
 
+
     <!-- Register screen -->
     <string name="Register_PolicyNumber">Policy Number: </string>
     <string name="Register_Dob">Date of Birth: </string>
@@ -33,4 +66,14 @@
     <string name="RequestPinReset_EnterEmailTxt">Please enter your email address below</string>
     <string name="RequestPinReset_EmailLabel">Email</string>
 
+   <!-- Push Notifications -->
+    <string name="gcm_send_message">Token retrieved and sent to server! You can now use gcmsender to
+        send downstream messages to this app.</string>
+    <string name="registering_message">Generating InstanceID token...</string>
+    <string name="token_error_message">An error occurred while either fetching the InstanceID token,
+        sending the fetched token to the server or subscribing to the PubSub topic. Please try
+        running the sample again.</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

@@ -1,0 +1,18 @@
+<tabs>
+    <tab
+        id="@+id/tab_call"
+        icon="@drawable/ic_call"
+        title="" />
+    <tab
+        id="@+id/tab_chat"
+        icon="@drawable/ic_chat"
+        title="" />
+    <tab
+        id="@+id/tab_email"
+        icon="@drawable/ic_email"
+        title="" />
+    <tab
+        id="@+id/tab_request"
+        icon="@drawable/ic_request"
+        title="" />
+</tabs>
