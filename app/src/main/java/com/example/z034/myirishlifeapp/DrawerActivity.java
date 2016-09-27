@@ -78,8 +78,11 @@ public class DrawerActivity extends MainActivity
         } else if (id == R.id.my_policies) {
 
         } else if (id == R.id.add_policy) {
-            Intent addPolicyIntent = new Intent(getApplicationContext(), QRScannerActivity.class);
+            Intent addPolicyIntent = new Intent(getApplicationContext(), AddPolicyActivity.class);
             startActivity(addPolicyIntent);
+        } else if (id == R.id.web_login) {
+            Intent webLoginIntent = new Intent(getApplicationContext(),InitiateWebSessionActivity.class);
+            startActivity(webLoginIntent);
         } else if (id == R.id.tools) {
 
         } else if (id == R.id.inbox) {
