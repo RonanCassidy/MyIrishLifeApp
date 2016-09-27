@@ -18,17 +18,12 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".QRScannerActivity" />
-        <activity android:name=".LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".ContactUsActivity" />
+        <activity
+            android:name=".UserDetailActivity"
+            android:label="My Details" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    <activity android:name=".ContactUsActivity">
-    </activity>
-        <activity android:name=".UserDetailActivity"
-            android:label="My Details"/>
         <service
             android:name=".AuthenticatorService"
             android:exported="false">
@@ -41,7 +36,16 @@
                 android:resource="@xml/authenticator" />
         </service>
 
-        <activity android:name=".Home"></activity>
+        <activity android:name=".Home" />
+        <activity android:name=".FirstTimeLoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".RequestPinResetActivity"></activity>
     </application>
 
 </manifest>

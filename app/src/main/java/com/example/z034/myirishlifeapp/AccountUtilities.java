@@ -12,7 +12,7 @@ import android.util.Log;
 import static android.Manifest.permission.GET_ACCOUNTS;
 
 public class AccountUtilities {
-    public static final String accountType = "com.example.x339.myapplication.DEMOACCOUNT";
+    public static final String accountType = "com.example.z034.myirishlifeapp.DEMOACCOUNT";
     private static final int REQUEST_GET_ACCOUNTS = 0;
 
     public static boolean CheckForAccount(Context context, Activity activity)
@@ -21,7 +21,8 @@ public class AccountUtilities {
         if (ContextCompat.checkSelfPermission(context, GET_ACCOUNTS) == PackageManager.PERMISSION_GRANTED)
         {
             Account[] accounts = accountManager.getAccountsByType(accountType);
-            return accounts.length == 0;
+            if(accounts.length != 0) return true;
+            else return false;
         }
         else
         {
@@ -36,7 +37,7 @@ public class AccountUtilities {
         if (ContextCompat.checkSelfPermission(context, GET_ACCOUNTS) == PackageManager.PERMISSION_GRANTED)
         {
             Account[] accounts = accountManager.getAccountsByType(accountType);
-            if(accounts.length == 0)
+            if(accounts.length != 0)
             {
                 return accounts[0];
             }
@@ -46,6 +47,12 @@ public class AccountUtilities {
             ActivityCompat.requestPermissions(activity, new String[]{GET_ACCOUNTS}, REQUEST_GET_ACCOUNTS);
         }
         return null;
+    }
+
+    public static String GetPasswordFromAccount(Context context, Account account)
+    {
+        AccountManager accountManager = AccountManager.get(context);
+        return accountManager.getPassword(account);
     }
 
     public static boolean AddAccount(Context context, String email, String password)
