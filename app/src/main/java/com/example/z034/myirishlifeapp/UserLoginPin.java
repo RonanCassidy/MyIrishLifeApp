@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,13 +25,20 @@ public class UserLoginPin extends AsyncTask<Void, Void, Boolean> {
     private final String urlParameters;
     private final EditText pinField;
     private final Context context;
+    private final String UserID;
+    private final String Pin;
+    private Boolean Timedout = false;
 
-    UserLoginPin(String targetURL, String method, String urlParameters, EditText pinField, Context context) {
+    UserLoginPin(String targetURL, String method, String username, String pin, EditText pinField, Context context) {
         this.targetURL = targetURL;
         this.targetMethod = method;
-        this.urlParameters = urlParameters;
+        this.UserID = username;
+        this.Pin = pin;
+        String query = "userID=" + username + "&" + "pin=" + pin;
+        this.urlParameters = query;
         this.pinField = pinField;
         this.context = context;
+        this.Timedout = false;
     }
 
     @Override
@@ -60,12 +68,14 @@ public class UserLoginPin extends AsyncTask<Void, Void, Boolean> {
                 else return false;
             } catch (JSONException e) {
                 e.printStackTrace();
-                //String err = "Cannot create JSONObject with response from server. Response '" + sb.toString() +"'";
-                //throw new JSONException(err);
             }
 
             return true;
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Timedout = true;
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -75,12 +85,16 @@ public class UserLoginPin extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected void onPostExecute(final Boolean success) {
         if (success) {
-            Intent home = new Intent(context, Home.class);
+            Intent home = new Intent(context, DrawerActivity.class);
+            home.putExtra(ApplicationConstants.Username, this.UserID);
+            home.putExtra(ApplicationConstants.Pin, this.Pin);
             home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(home);
-            String s1 = "Succesdfhkks!!!";
-            //redirect
-        } else {
+        } else if(Timedout){
+            pinField.setError("Timed out connecting to server");
+            Timedout = false;
+        }
+        else {
             pinField.setError("Pin is invalid");
         }
     }

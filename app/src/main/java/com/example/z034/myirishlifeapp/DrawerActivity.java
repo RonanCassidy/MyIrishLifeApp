@@ -13,10 +13,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.GridLayout;
+import android.widget.TextView;
 
-public class DrawerActivity extends MainActivity
+import org.json.JSONArray;
+
+public class DrawerActivity extends Home
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private String userId;
+    private String Pin;
+    private JSONArray PolicyInfo = null;
+    private GridLayout PolicyGrid;
+    private TextView nav_user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +41,23 @@ public class DrawerActivity extends MainActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View hView =  navigationView.getHeaderView(0);
+        nav_user = (TextView)hView.findViewById(R.id.viewName);
+
+        getPolicyInfo();
     }
 
+    public void getPolicyInfo()
+    {
+
+        PolicyGrid = (GridLayout) findViewById(R.id.HomePolicyGrid);
+        Intent intent = getIntent();
+        this.userId = intent.getStringExtra(ApplicationConstants.Username);
+        nav_user.setText(userId);
+        this.Pin = intent.getStringExtra(ApplicationConstants.Pin);
+        HttpUtilities.GetPolicyData(userId, Pin, getApplicationContext(), intent, PolicyGrid);
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -78,8 +102,11 @@ public class DrawerActivity extends MainActivity
         } else if (id == R.id.my_policies) {
 
         } else if (id == R.id.add_policy) {
-            Intent addPolicyIntent = new Intent(getApplicationContext(), QRScannerActivity.class);
+            Intent addPolicyIntent = new Intent(getApplicationContext(), AddPolicyActivity.class);
             startActivity(addPolicyIntent);
+        } else if (id == R.id.web_login) {
+            Intent webLoginIntent = new Intent(getApplicationContext(),InitiateWebSessionActivity.class);
+            startActivity(webLoginIntent);
         } else if (id == R.id.tools) {
 
         } else if (id == R.id.inbox) {

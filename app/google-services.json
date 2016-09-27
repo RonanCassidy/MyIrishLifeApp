@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "483555755914",
+    "firebase_url": "https://my-irish-life-app-90751.firebaseio.com",
+    "project_id": "my-irish-life-app-90751",
+    "storage_bucket": "my-irish-life-app-90751.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483555755914:android:98cf4164b317a47f",
+        "android_client_info": {
+          "package_name": "com.example.z034.myirishlifeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483555755914-90r06e6uanlv09357dlh4kqpmb5hidlj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrzn4LKwdfVTrPzUmIqjYO_6YrH7dTqCI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

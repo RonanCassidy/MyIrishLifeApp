@@ -1,13 +1,18 @@
 package com.example.z034.myirishlifeapp;
 
-import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.net.Uri;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,32 +23,58 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.function.Function;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.MalformedURLException;
+import java.net.Proxy;
+import java.net.URL;
+import java.net.URLEncoder;
 
 /**
  * Created by s970 on 21/09/2016.
  */
 
 public class UserDetailActivity extends AppCompatActivity {
+
     boolean onStart=true;
-    private static final String TAG_NAME = "name";
+
+
+    private static final String TAG_FORENAME = "forename";
+    private static final String TAG_SURNAME = "surname";
     private static final String TAG_DOB = "dob";
     private static final String TAG_EMAIL = "email";
     private static final String TAG_MOBILE = "mobile";
     private static final String TAG_ADDRESS = "address";
 
+    private static final String FETCH_URL= "http://52.174.106.218/AutService.asmx/GetUserDetails"; //azure
+    //private static final String FETCH_URL= "http://10.233.204.232:9090/AutService.asmx/GetUserDetails"; //internal
+    private static final String SAVE_URL = "http://52.174.106.218/AutService.asmx/SaveUserDetails"; // azure
+    //private static final String SAVE_URL = "http://10.233.204.232:9090/AutService.asmx/SaveUserDetails"; // internal
+    private static final String POSTCODE_LOOKUP_URL = "https://api.autoaddress.ie/2.0/PostcodeLookup";
+    private static final String AUTOADDRESS_KEY = "10F069B3-5A3F-4bfc-B2CB-F062DA84C102";
+
     private JSONObject jsonobject;
     private EditText name, dob, email, phone, address, eircode;
     private TextView eircodeView;
-    private Button update, save, cancel,useeircode;
+    private Button update, save, cancel, useeircode;
+    private boolean updated, canListenInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userdetail);
+        canListenInput = false;
 
         BottomBar bottombar =(BottomBar) findViewById(R.id.bottomBar);
         bottombar.setOnTabSelectListener(new OnTabSelectListener() {
@@ -148,83 +179,74 @@ public class UserDetailActivity extends AppCompatActivity {
         cancel = (Button) findViewById(R.id.cancel);
         useeircode = (Button) findViewById(R.id.useeircode);
 
+        TextWatcher tw = new TextWatcher(){
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (canListenInput) {
+                    updated = true;
+                }
+            }
+        };
+
+        new FetchUser().execute();
+
+        email.addTextChangedListener(tw);
+        phone.addTextChangedListener(tw);
+        address.addTextChangedListener(tw);
+
         // disable save/cancel
         disableEditing();
 
-        // get user details
-        String strJson="{\"username\": \"tkavanagh\",\n" +
-                "\"password\": \"password13\",\n" +
-                "\"pin\": \"1234\",\n" +
-                "\"name\": \"Tricia Kavanagh\",\n" +
-                "\"dob\": \"1980-01-01\",\n" +
-                "\"email\": \"tricia.kavanagh@irishlife.ie\",\n" +
-                "\"mobile\": \"+353870000000\",\n" +
-                "\"address\": \"Something something something, \n" +
-                "Slane, \n" +
-                "Co. Meath\"}";
-
-        // populate form fields
-        try {
-            jsonobject = new JSONObject(strJson);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            name.setText(jsonobject.getString(TAG_NAME));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            dob.setText(jsonobject.getString(TAG_DOB));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            email.setText(jsonobject.getString(TAG_EMAIL));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            phone.setText(jsonobject.getString(TAG_MOBILE));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            address.setText(jsonobject.getString(TAG_ADDRESS));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     public void updateClick(View v)
     {
+
         enableEditing();
     }
 
     public void saveClick(View v)
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if (updated) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Confirm Update");
-        builder.setMessage("These changes will be made to all your Irish Life policies");
-        builder.setPositiveButton("Save Changes", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // save to db ...
-                disableEditing();
-                dialog.dismiss();
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Do nothing
-                dialog.dismiss();
-            }
-        });
+            builder.setTitle("Confirm Update");
+            builder.setMessage("These changes will be made to all your Irish Life policies");
+            builder.setPositiveButton("Save Changes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // save to db ...
+                    disableEditing();
+                    dialog.dismiss();
+                    // change to use real userId and password
+                    String urlParams = null;
+                    try {
+                        urlParams = "userID=Yvonne.Mongo856&pin=1234" +
+                                "&email="+email.getText().toString() +
+                                "&mobile=" + phone.getText().toString() +
+                                "&address=" + URLEncoder.encode(address.getText().toString(), "UTF-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
 
-        AlertDialog alert = builder.create();
-        alert.show();
+                    new SaveUser(urlParams).execute();
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do nothing
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
 
     }
 
@@ -235,7 +257,12 @@ public class UserDetailActivity extends AppCompatActivity {
 
     public void useEircodeClick(View v)
     {
-        // check eircodes...
+        if(eircode.getText().length() > 6){
+            new PostcodeLookup(eircode.getText().toString()).execute();
+        } else {
+            Toast.makeText(UserDetailActivity.this, "Please enter eircode", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     private void enableEditing(){
@@ -252,6 +279,7 @@ public class UserDetailActivity extends AppCompatActivity {
         eircodeView.setVisibility(View.VISIBLE);
         useeircode.setEnabled(true);
         useeircode.setVisibility(View.VISIBLE);
+        canListenInput = true;
     }
 
     private void disableEditing(){
@@ -269,11 +297,281 @@ public class UserDetailActivity extends AppCompatActivity {
         phone.setEnabled(false);
         address.setEnabled(false);
     }
+    private class FetchUser extends AsyncTask<String, String, String> {
+        ProgressDialog pdLoading = new ProgressDialog(UserDetailActivity.this);
+        HttpURLConnection conn;
+        URL url = null;
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
 
-    public String getUserDetails(){
-        String sName=name.getText().toString();
-        return sName;
+            //this method will be running on UI thread
+            pdLoading.setMessage("\tLoading...");
+            pdLoading.setCancelable(true);
+            pdLoading.show();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                // need to change this to use real userId and pin!!
+                url = new URL(FETCH_URL+"?userID=Yvonne.Mongo856&pin=1234");
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return e.toString();
+            }
+            try {
+
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                return e1.toString();
+            }
+
+            try {
+
+                int response_code = conn.getResponseCode();
+
+                // Check if successful connection made
+                if (response_code == HttpURLConnection.HTTP_OK) {
+                    // Read data sent from server
+                    InputStream input = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                    StringBuilder result = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        result.append(line);
+                    }
+                    // Pass data to onPostExecute method
+                    return (result.toString());
+                } else {
+                    return ("unsuccessful");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return e.toString();
+            } finally {
+                conn.disconnect();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //this method will be running on UI thread
+            pdLoading.dismiss();
+            try {
+                JSONObject jsonobject = new JSONObject(result);
+                try {
+                    name.setText(jsonobject.getString(TAG_FORENAME) + " " + jsonobject.getString(TAG_SURNAME));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    dob.setText(jsonobject.getString(TAG_DOB));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    email.setText(jsonobject.getString(TAG_EMAIL));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    phone.setText(jsonobject.getString(TAG_MOBILE));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    address.setText(jsonobject.getString(TAG_ADDRESS));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } catch (JSONException e) {
+                Toast.makeText(UserDetailActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
+    private class SaveUser extends AsyncTask<String, String, String> {
+        private final String parameters;
+
+        SaveUser(String parameters) {
+            this.parameters = parameters;
+        }
+        ProgressDialog pdLoading = new ProgressDialog(UserDetailActivity.this);
+        HttpURLConnection conn;
+        URL url = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //this method will be running on UI thread
+            pdLoading.setMessage("\tUpdating...");
+            pdLoading.setCancelable(false);
+            pdLoading.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                url = new URL(SAVE_URL+"?"+parameters);
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return e.toString();
+            }
+            try {
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                return e1.toString();
+            }
+
+            try {
+                int response_code = conn.getResponseCode();
+                // Check if successful connection made
+                if (response_code == HttpURLConnection.HTTP_OK) {
+                    // Read data sent from server
+                    InputStream input = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                    StringBuilder result = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        result.append(line);
+                    }
+                    // Pass data to onPostExecute method
+                    return (result.toString());
+                } else {
+                    return ("unsuccessful");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return e.toString();
+            } finally {
+                conn.disconnect();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //this method will be running on UI thread
+            pdLoading.dismiss();
+            try {
+                JSONObject jsonResponse = new JSONObject(result);
+                if(jsonResponse.get("updateSuccessful").toString() == "true") {
+                    Toast.makeText(UserDetailActivity.this, "Details Saved Successfully", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(UserDetailActivity.this, "Unable to update details", Toast.LENGTH_LONG).show();
+                }
+
+            } catch (JSONException e) {
+                Toast.makeText(UserDetailActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+            }
+
+        }
+
+    }
+
+    private class PostcodeLookup extends AsyncTask<String, String, String> {
+        private final String postcode;
+        PostcodeLookup(String postcode) {
+            this.postcode = postcode;
+        }
+
+        ProgressDialog pdLoading = new ProgressDialog(UserDetailActivity.this);
+        HttpURLConnection conn;
+        URL url = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //this method will be running on UI thread
+            pdLoading.setMessage("\tChecking...");
+            pdLoading.setCancelable(false);
+            pdLoading.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                // need to change this to use real userId and pin!!
+                url = new URL(POSTCODE_LOOKUP_URL+"?key="+AUTOADDRESS_KEY+"&postcode="+postcode+"&vanityMode=true");
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return e.toString();
+            }
+            try {
+                // only needed for emulating on pc, remove before demo
+                //Proxy proxy = new Proxy(Proxy.Type.HTTP,new InetSocketAddress("ilserverproxy.europa.internal",8080));
+                //conn = (HttpURLConnection) url.openConnection(proxy);
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                return e1.toString();
+            }
+
+            try {
+
+                int response_code = conn.getResponseCode();
+
+                // Check if successful connection made
+                if (response_code == HttpURLConnection.HTTP_OK) {
+                    // Read data sent from server
+                    InputStream input = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                    StringBuilder result = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        result.append(line);
+                    }
+                    // Pass data to onPostExecute method
+                    return (result.toString());
+                } else {
+                    return ("unsuccessful");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return e.toString();
+            } finally {
+                conn.disconnect();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //this method will be running on UI thread
+            pdLoading.dismiss();
+            try {
+
+                JSONObject jsonobject = new JSONObject(result);
+                JSONArray addressArray = jsonobject.getJSONArray("vanityAddress");
+
+                String postalAddress = "";
+                for (int i = 0; i < addressArray.length(); i++) {
+                    postalAddress = postalAddress + addressArray.getString(i) + "\n";
+                }
+
+                address.setText(postalAddress.substring(0, postalAddress.length()-1));
+            } catch (JSONException e) {
+                Toast.makeText(UserDetailActivity.this, "No address found", Toast.LENGTH_LONG).show();
+                System.out.println(e.toString());
+            }
+        }
+    }
 }
+

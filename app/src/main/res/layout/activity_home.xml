@@ -9,7 +9,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.z034.myirishlifeapp.Home">
-
     <ScrollView
         android:id="@+id/Home_Form"
         android:layout_width="match_parent"
@@ -39,9 +38,8 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:rowCount="4"
-                tools:rowCount="4"
-                android:columnCount="2">
+                android:columnCount="2"
+                android:id="@+id/HomePolicyGrid">
 
                 <TextView
                 android:text="Policy Type"
@@ -68,7 +66,8 @@
                 android:width="220dp"
                 android:textSize="16sp"
                 android:textColor="#FFFF"
-                android:background="@drawable/rounded_edittext" />
+                android:background="@drawable/rounded_edittext"
+                android:onClick="AddPolicyButtonClick"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

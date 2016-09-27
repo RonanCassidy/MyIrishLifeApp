@@ -1,6 +1,7 @@
 package com.example.z034.myirishlifeapp;
 
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,8 +20,8 @@ public class WebActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
-
-        ab = getSupportActionBar();
+        Intent intent = getIntent();
+        String url = intent.getStringExtra("link");
         mWebView = (WebView) findViewById(R.id.webView);
 
         mWebView.setWebViewClient(new WebViewClient()
@@ -35,7 +36,7 @@ public class WebActivity extends AppCompatActivity {
         });
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mWebView.loadUrl("https://www.google.ie/");
+        mWebView.loadUrl(url);
 
     }
     public void refreshClick()

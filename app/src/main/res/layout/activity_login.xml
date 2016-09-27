@@ -30,7 +30,7 @@
         android:id="@+id/ForgottenPin"
         android:background="#FFF"
         android:textColor="#808080"
-        android:onClick="RegisterButtonClick"
+        android:onClick="ForgottenPinButtonClick"
         style="?android:attr/borderlessButtonStyle"/>
 
     <Button
@@ -46,6 +46,7 @@
         android:textColor="#FFFF"
         android:background="@drawable/rounded_edittext"
         android:onClick="LoginButtonClick" />
+
 
     <Button
         android:text="@string/Login_RegisterButton"
@@ -86,6 +87,18 @@
         android:layout_alignRight="@+id/Login"
         android:layout_alignEnd="@+id/Login"
         android:textColorLink="?android:attr/textColorHint" />
+
+    <Button
+        android:text="Terms and Conditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        android:textColor="#808080"
+        android:onClick="TermsAndConditionsButtonClick"
+        android:id="@+id/TermsAndConditionsButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        style="?android:attr/borderlessButtonStyle" />
 
 
 </RelativeLayout>
