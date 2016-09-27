@@ -56,6 +56,18 @@
                 android:value=".DrawerActivity" />
         </activity>
 
+        <activity android:name=".AddPolicyActivity" android:label="Add Policy">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity"/>
+        </activity>
+
+        <activity android:name=".InitiateWebSessionActivity" android:label="Initiate Web Session">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity"/>
+        </activity>
+
         <service
             android:name=".AuthenticatorService"
             android:exported="false">
