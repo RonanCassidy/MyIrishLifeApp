@@ -61,7 +61,7 @@ public class UserLoginPassword extends AsyncTask<Void, Void, Boolean> {
             if(HttpUtilities.GetAuthenticatedYesNo(this.Response))
             {
                 // Prepare new activity
-                Intent home = new Intent(this.Context, Home.class);
+                Intent home = new Intent(this.Context, DrawerActivity.class);
                 home.putExtra(ApplicationConstants.Username, this.UserID);
                 home.putExtra(ApplicationConstants.Pin, "1234");
                 home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

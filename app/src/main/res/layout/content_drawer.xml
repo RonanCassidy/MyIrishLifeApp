@@ -14,7 +14,7 @@
     tools:showIn="@layout/app_bar_drawer">
 
     <include
-        layout="@layout/activity_main"
+        layout="@layout/activity_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

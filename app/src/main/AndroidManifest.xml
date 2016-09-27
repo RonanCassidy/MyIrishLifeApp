@@ -25,7 +25,9 @@
         <activity
             android:name=".DrawerActivity"
             android:label="@string/title_activity_drawer"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop">
+
         </activity>
         <activity
             android:name=".OnlineChat"
@@ -35,11 +37,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DrawerActivity" />
         </activity>
-        <activity android:name=".LoginActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DrawerActivity" />
-        </activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".WebActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -70,7 +68,7 @@
                 android:resource="@xml/authenticator" />
         </service>
 
-        <activity android:name=".Home" />
+        <activity android:name=".Home" ></activity>
 
         <activity android:name=".FirstTimeLoginActivity">
             <intent-filter>
@@ -79,8 +77,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".RequestPinResetActivity"></activity>
+
+        <activity android:name=".RegisterActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity android:name=".RequestPinResetActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+
+        <activity android:name=".MyQrCode">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity android:name=".Toolbox">
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".DrawerActivity" />
+        </activity>
 
 
         <!-- [START gcm_receiver] -->
@@ -119,12 +137,7 @@
             android:name=".GCMRegistrationIntentService"
             android:exported="false" />
 
-        <activity android:name=".MyQrCode">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DrawerActivity" />
-        </activity>
-        <activity android:name=".Toolbox"></activity>
+
 
     </application>
 

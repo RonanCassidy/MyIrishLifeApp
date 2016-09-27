@@ -1,5 +1,6 @@
 package com.example.z034.myirishlifeapp;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ public class MyQrCode extends AppCompatActivity {
     ImageView qrCodeImageview;
     TextView text;
     String QRcode;
+
     public final static int WIDTH=500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +25,12 @@ public class MyQrCode extends AppCompatActivity {
         setContentView(R.layout.activity_my_qr_code);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getID();
+        final Account acc = AccountUtilities.GetSavedAccount(this, this);
         // create thread to avoid ANR Exception
         Thread t = new Thread(new Runnable() {
             public void run() {
             // this is the msg which will be encode in QRcode
-                QRcode="My name is Mark and I'm an Android Developer please hire me";
+                QRcode= acc.name;
                 try {
                     synchronized (this) {
                         wait(5000);

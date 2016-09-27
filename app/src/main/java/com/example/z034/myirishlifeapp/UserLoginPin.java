@@ -85,7 +85,7 @@ public class UserLoginPin extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected void onPostExecute(final Boolean success) {
         if (success) {
-            Intent home = new Intent(context, Home.class);
+            Intent home = new Intent(context, DrawerActivity.class);
             home.putExtra(ApplicationConstants.Username, this.UserID);
             home.putExtra(ApplicationConstants.Pin, this.Pin);
             home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

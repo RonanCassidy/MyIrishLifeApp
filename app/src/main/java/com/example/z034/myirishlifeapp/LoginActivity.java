@@ -21,7 +21,6 @@ public class LoginActivity extends AppCompatActivity {
         userPinField = (EditText) findViewById(R.id.LoginPin);
         Intent intent = getIntent();
         this.UserId = intent.getStringExtra(ApplicationConstants.Username);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void LoginButtonClick(View v)

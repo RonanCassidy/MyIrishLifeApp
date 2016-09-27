@@ -25,7 +25,7 @@ import java.net.*;
 
 public class HttpUtilities {
 
-    public static final String AuthenticateServerUrl = "http://10.233.204.232:9090/AutService.asmx/";
+    public static final String AuthenticateServerUrl = "http://52.174.106.218/AutService.asmx/";
     public static final String AuthenticateWithPin = "AuthenticateWithPin";
     public static final String AuthenticateWithPassword = "AuthenticateWithPassword";
     public static final String GetUserPolicyInfo = "GetUserPolicyList";
