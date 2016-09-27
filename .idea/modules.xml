@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/MyIrishLifeApp.iml" filepath="$PROJECT_DIR$/MyIrishLifeApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/gcmsenderservice/gcmsenderservice.iml" filepath="$PROJECT_DIR$/gcmsenderservice/gcmsenderservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gcmsenderservice/gcmsenderservice.iml" filepath="$PROJECT_DIR$/gcmsenderservice/gcmsenderservice.iml" />
     </modules>
   </component>
 </project>

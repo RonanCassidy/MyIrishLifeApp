@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_toolbox"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.z034.myirishlifeapp.Toolbox">
+
+    <TextView
+        android:text="https://www.pensionplanetinteractive.ie/prophet/"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnPensionCalc"
+        android:layout_marginTop="43dp"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="https://www.irishlife.ie/life-insurance/term-life-insurance-quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:id="@+id/btnLifeCoverQuote"
+        android:layout_below="@+id/btnPensionCalc"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="http://www.irishlifehealth.ie/health-insurance-plans/?showall=1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:id="@+id/btnHealthCoverQuote"
+        android:layout_below="@+id/btnLifeCoverQuote"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="https://www.pensionplanetinteractive.ie/ppi/public/pensionChoicePersonalDetails.action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:id="@+id/btnEnAnnQuote"
+        android:layout_below="@+id/btnHealthCoverQuote"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btnRiskProfiler"
+        android:textAlignment="center"
+        android:text="https://www.pensionplanetinteractive.ie/ppi/public/loadRiskProfiler.action"
+        android:layout_below="@+id/btnEnAnnQuote"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:id="@+id/btnInvestments"
+        android:textAlignment="center"
+        android:text="https://www.irishlife.ie/investments"
+        android:layout_below="@+id/btnRiskProfiler"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:id="@+id/textView6"
+        android:textAlignment="center"
+        android:layout_below="@+id/btnInvestments"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

@@ -83,4 +83,13 @@
         android:layout_alignParentBottom="true"
         app:bb_tabXmlResource="@xml/bottombar" />
 
+    <Button
+        android:text="Who am I?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnMyQr"
+        android:layout_below="@+id/qrButton"
+        android:layout_centerHorizontal="true"
+        android:onClick="btnMyQrClick" />
+
 </RelativeLayout>

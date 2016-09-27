@@ -137,10 +137,14 @@ public class MainActivity extends AppCompatActivity {
     }
     public void btnIrlClick(View v) {
         // Start NewActivity.class
-
         Intent webIntent = new Intent(getApplicationContext(), WebActivity.class);
-        webIntent.putExtra("link", "www.irishlife.ie");
+        webIntent.putExtra("link", "http://www.irishlife.ie");
         startActivity(webIntent);
+    }
+    public void btnMyQrClick(View v) {
+        // Start NewActivity.class
+        Intent myQrIntent = new Intent(getApplicationContext(), MyQrCode.class);
+        startActivity(myQrIntent);
     }
     public void contactUsClick(View v) {
 
