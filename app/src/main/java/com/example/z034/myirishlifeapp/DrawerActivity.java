@@ -214,6 +214,8 @@ public class DrawerActivity extends Home
             webLoginIntent.putExtra(ApplicationConstants.Pin, intent.getStringExtra(ApplicationConstants.Pin));
             startActivity(webLoginIntent);
         } else if (id == R.id.tools) {
+            Intent toolboxIntent = new Intent(getApplicationContext(),Toolbox.class);
+            startActivity(toolboxIntent);
 
         } else if (id == R.id.inbox) {
 
