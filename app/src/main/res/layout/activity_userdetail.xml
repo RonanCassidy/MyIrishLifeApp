@@ -73,11 +73,13 @@
         android:onClick="updateClick"
         android:layout_below="@+id/address"
         android:layout_centerHorizontal="true"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:background="#50c9b5"/>
+        android:background="@drawable/rounded_edittext"
+        android:textSize="16sp"
+        android:textColor="#FFFF"
+        />
 
     <Button
-        android:text="Save Changes"
+        android:text="Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/save"
@@ -86,9 +88,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/address"
         android:layout_alignEnd="@+id/address"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_marginBottom="80dp"
-        android:background="#50c9b5"/>
+        android:layout_marginBottom="65dp"
+        android:background="@drawable/rounded_edittext"
+        android:textSize="16sp"
+        android:textColor="#FFFF"/>
+
 
     <Button
         android:text="Cancel"
@@ -101,9 +105,11 @@
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/save"
         android:layout_toStartOf="@+id/save"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_marginBottom="80dp"
-        android:background="#50c9b5"/>
+        android:layout_marginBottom="65dp"
+        android:background="@drawable/rounded_edittext"
+        android:textSize="16sp"
+        android:textColor="#FFFF"/>
+
 
     <Button
         android:text="Use Eircode"
@@ -116,9 +122,11 @@
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/cancel"
         android:layout_toStartOf="@+id/cancel"
-        android:layout_marginBottom="80dp"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:background="#50c9b5"/>
+        android:layout_marginBottom="65dp"
+        android:background="@drawable/rounded_edittext"
+        android:textSize="16sp"
+        android:textColor="#FFFF"/>
+
 
     <TextView
         android:text="Name:"

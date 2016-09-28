@@ -33,6 +33,7 @@ public class AddPolicyActivity extends AppCompatActivity {
     private static final String ADD_POLICY_URL = "http://52.174.106.218/AutService.asmx/AddPolicyToUser"; // azure
     //private static final String ADD_POLICY_URL = "http://10.233.204.232:9090/AutService.asmx/AddPolicyToUser"; // internal
     private EditText policyIdText;
+    private String userid, pincode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,12 @@ public class AddPolicyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_policy);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         policyIdText = (EditText) findViewById(R.id.policyNumberEditText);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            userid = extras.getString(ApplicationConstants.Username);
+            pincode = extras.getString(ApplicationConstants.Pin);
+        }
     }
 
     public void btnScanPolicyClick(View v) {
@@ -61,7 +68,7 @@ public class AddPolicyActivity extends AppCompatActivity {
                     builder.setMessage("Policy " + policyId + " will be added to your account");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            String parameters = "userID=Yvonne.Mongo856&pin=1234" + "&policyID=" + policyId;
+                            String parameters = "userID=" + userid + "&pin=" + pincode + "&policyID=" + policyId;
                             new AddPolicy(parameters).execute(parameters);
                         }
                     });
@@ -90,7 +97,7 @@ public class AddPolicyActivity extends AppCompatActivity {
             builder.setMessage("Policy " + policyIdText.getText() + " will be added to your account");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    String parameters = "userID=Yvonne.Mongo856&pin=1234" + "&policyID=" + policyIdText.getText();
+                    String parameters = "userID=" + userid +"&pin=" + pincode + "&policyID=" + policyIdText.getText();
                     new AddPolicy(parameters).execute(parameters);
                 }
             });
