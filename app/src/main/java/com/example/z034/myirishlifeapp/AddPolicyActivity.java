@@ -167,6 +167,7 @@ public class AddPolicyActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             String parameters = "userID=" + userid + "&pin=" + pincode + "&policyID=" + policyId;
                             new AddPolicy(parameters).execute(parameters);
+                            displayPolicyDetails(policyId);
                         }
                     });
                     builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -196,6 +197,7 @@ public class AddPolicyActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     String parameters = "userID=" + userid +"&pin=" + pincode + "&policyID=" + policyIdText.getText();
                     new AddPolicy(parameters).execute(parameters);
+                    displayPolicyDetails(policyIdText.getText().toString());
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -209,6 +211,14 @@ public class AddPolicyActivity extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
         }
+    }
+
+    private void displayPolicyDetails(String policyNumber){
+        Intent addPolicyIntent = new Intent(getApplicationContext(), PolicyDetailsActivity.class);
+        addPolicyIntent.putExtra("PolicyNumber",policyNumber);
+        addPolicyIntent.putExtra(ApplicationConstants.Username, userid);
+        addPolicyIntent.putExtra(ApplicationConstants.Pin, pincode);
+        startActivity(addPolicyIntent);
     }
 
     private class AddPolicy extends AsyncTask<String, String, String> {
