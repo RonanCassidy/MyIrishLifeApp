@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
@@ -18,6 +19,7 @@ public class Toolbox extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toolbox);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         BottomBar bottombar =(BottomBar) findViewById(R.id.bottomBar);
         bottombar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
@@ -57,7 +59,6 @@ public class Toolbox extends AppCompatActivity {
                             })
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
-
                 }
 
             }
@@ -100,11 +101,56 @@ public class Toolbox extends AppCompatActivity {
                             })
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
-
                 }
             }
         });
 
         onStart = false;
     }
+    public void btnPenCalcClick(View v) {
+        // Start NewActivity.class
+        Intent webIntent = new Intent(getApplicationContext(), WebActivity.class);
+        webIntent.putExtra("link", "https://www.pensionplanetinteractive.ie/prophet/");
+        startActivity(webIntent);
+    }
+
+
+    public void btnLifeCoverClick(View v) {
+        // Start NewActivity.class
+        Intent webIntent = new Intent(getApplicationContext(), WebActivity.class);
+        webIntent.putExtra("link", "https://www.irishlife.ie/life-insurance/term-life-insurance-quote");
+        startActivity(webIntent);
+    }
+
+
+    public void btnHealthCoverClick(View v) {
+        // Start NewActivity.class
+        Intent webIntent = new Intent(getApplicationContext(), WebActivity.class);
+        webIntent.putExtra("link", "http://www.irishlifehealth.ie/health-insurance-plans/?showall=1");
+        startActivity(webIntent);
+    }
+
+
+    public void btnEnAnnClick(View v) {
+        // Start NewActivity.class
+        Intent webIntent = new Intent(getApplicationContext(), WebActivity.class);
+        webIntent.putExtra("link", "https://www.pensionplanetinteractive.ie/ppi/public/pensionChoicePersonalDetails.action");
+        startActivity(webIntent);
+    }
+
+
+    public void btnRiskProfilerClick(View v) {
+        // Start NewActivity.class
+        Intent webIntent = new Intent(getApplicationContext(), WebActivity.class);
+        webIntent.putExtra("link", "https://www.pensionplanetinteractive.ie/ppi/public/loadRiskProfiler.action");
+        startActivity(webIntent);
+    }
+    public void btnInvestClick(View v) {
+        // Start NewActivity.class
+        Intent webIntent = new Intent(getApplicationContext(), WebActivity.class);
+        webIntent.putExtra("link", "https://www.irishlife.ie/investments");
+        startActivity(webIntent);
+    }
+
+
 }

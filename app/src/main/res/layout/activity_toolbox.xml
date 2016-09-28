@@ -11,74 +11,28 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.z034.myirishlifeapp.Toolbox">
 
-    <TextView
-        android:text="https://www.pensionplanetinteractive.ie/prophet/"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnPensionCalc"
-        android:layout_marginTop="43dp"
-        android:textAlignment="center"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="https://www.irishlife.ie/life-insurance/term-life-insurance-quote"
+    <Button
+        android:text="Life Cover Quote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:id="@+id/btnLifeCoverQuote"
         android:layout_below="@+id/btnPensionCalc"
         android:layout_centerHorizontal="true"
-        android:textAlignment="center" />
-
-    <TextView
-        android:text="http://www.irishlifehealth.ie/health-insurance-plans/?showall=1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:id="@+id/btnHealthCoverQuote"
-        android:layout_below="@+id/btnLifeCoverQuote"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center" />
-
-    <TextView
-        android:text="https://www.pensionplanetinteractive.ie/ppi/public/pensionChoicePersonalDetails.action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:id="@+id/btnEnAnnQuote"
-        android:layout_below="@+id/btnHealthCoverQuote"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:id="@+id/btnRiskProfiler"
         android:textAlignment="center"
-        android:text="https://www.pensionplanetinteractive.ie/ppi/public/loadRiskProfiler.action"
-        android:layout_below="@+id/btnEnAnnQuote"
-        android:layout_centerHorizontal="true" />
+        android:onClick="btnLifeCoverClick" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
         android:id="@+id/btnInvestments"
         android:textAlignment="center"
-        android:text="https://www.irishlife.ie/investments"
+        android:text="Investments"
         android:layout_below="@+id/btnRiskProfiler"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="btnInvestClick" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:id="@+id/textView6"
-        android:textAlignment="center"
-        android:layout_below="@+id/btnInvestments"
-        android:layout_centerHorizontal="true" />
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
         app:bb_tabXmlResource="@xml/bottombar"
@@ -87,5 +41,50 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true" />
+
+    <Button
+        android:text="Pension Calculator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnPensionCalc"
+        android:layout_marginTop="23dp"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/btnHealthCoverQuote"
+        android:layout_alignEnd="@+id/btnHealthCoverQuote"
+        android:onClick="btnPenCalcClick" />
+
+    <Button
+        android:text="Enhanced Annuity Quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnEnAnnQuote"
+        android:textAlignment="center"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="btnEnAnnClick" />
+
+    <Button
+        android:text="Health Cover Quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/btnHealthCoverQuote"
+        android:textAlignment="center"
+        android:layout_below="@+id/btnLifeCoverQuote"
+        android:layout_centerHorizontal="true"
+        android:onClick="btnHealthCoverClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnRiskProfiler"
+        android:textAlignment="center"
+        android:text="Risk Profiler"
+        android:layout_below="@+id/btnEnAnnQuote"
+        android:layout_alignLeft="@+id/btnInvestments"
+        android:layout_alignStart="@+id/btnInvestments"
+        android:layout_marginTop="10dp"
+        android:onClick="btnRiskProfilerClick" />
 
 </RelativeLayout>
