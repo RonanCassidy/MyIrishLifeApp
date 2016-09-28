@@ -51,26 +51,26 @@ public class PolicyDetailsActivity extends AppCompatActivity {
     private static final String TAG_PolicyID = "policyID";
 
     //Health
-    private static final String TAG_StartDate = "startDate";
-    private static final String TAG_RenewalDate = "renewalDate";
-
-    //Savings
-    private static final String TAG_retireDate = "retireDate";
-    private static final String TAG_schemeNo = "schemeNo";
-    private static final String TAG_schemeName = "schemeName";
-
-    //Savings
-    /* These will change
-    private static final String TAG_retireDate = "retireDate";
-    private static final String TAG_schemeNo = "schemeNo";
-    private static final String TAG_schemeName = "schemeName";
-    */
+    private static final String TAG_StartDatehealth = "Start Date";
+    private static final String TAG_RenewalDatehealth = "Renewal Date";
+    private static final String TAG_planNamehealth = "Plan Name";
+    private static final String TAG_montPremhealth = "Monthly Premium";
+    //Life
+    private static final String TAG_matDatelife = "Maturity Date";
+    private static final String TAG_policyValuelife = "Policy Value ";
+    private static final String TAG_planNamelife = "Plan Name";
+    private static final String TAG_investAmountlife = "Invest Amount ";
+    //Pensions
+    private static final String TAG_retireDate = "Retire Date";
+    private static final String TAG_planName = "Plan Name";
+    private static final String TAG_fundValue = "Fund Value";
+    private static final String TAG_montPrem = "Monthly Premium";
     //Investments
-    /*These will change
-    private static final String TAG_retireDate = "retireDate";
-    private static final String TAG_schemeNo = "schemeNo";
-    private static final String TAG_schemeName = "schemeName";
-    */
+    private static final String TAG_matDateinvest = "Maturity Date";
+    private static final String TAG_policyValueinvest = "Policy Value ";
+    private static final String TAG_planNameinvest = "Plan Name";
+    private static final String TAG_investAmountinvest = "Invest Amount ";
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.policy_details);
@@ -383,37 +383,47 @@ private class FetchPolicyDetails extends AsyncTask<String, String, String> {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            try {
-                PolicyName.setText(jsonobject.getString(TAG_PolicyType)+"1234");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
+//
             try{
                 String pType=jsonobject.getString(TAG_PolicyType);
                 if (pType.equals("Pension")) {
                 vartext1.setText("Date of Retirement:");
                 vartext2.setText("Current Fund Value:");
                 vartext3.setText("Monthly Premium:");
+                    try {
+                PolicyName.setText(jsonobject.getString(TAG_planName));
+                vardata1.setText(jsonobject.getString(TAG_retireDate));
+                vardata2.setText("€"+jsonobject.getString(TAG_fundValue));
+                vardata3.setText("€"+jsonobject.getString(TAG_montPrem));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
 
                 }
-                if (pType.equals("Savings")) {
+                if (pType.equals("Life")) {
                 vartext1.setText("Maturity Date:");
-                vartext2.setText("Benefit Amount:");
-                vartext3.setText("Monthly Premium:");
-
+                vartext2.setText("Policy Value:");
+                vartext3.setText("Amount Invested:");
+                    try {
+                        PolicyName.setText(jsonobject.getString(TAG_planNamelife));
+                        vardata1.setText(jsonobject.getString(TAG_matDatelife));
+                        vardata2.setText("€"+jsonobject.getString(TAG_policyValuelife));
+                        vardata3.setText("€"+jsonobject.getString(TAG_investAmountlife));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (pType.equals("Health") ) {
-                vartext1.setText("Cover Start Date:");
-                vartext2.setText("Renewal Date:");
-                vartext3.setText("Monthly Premium:");
-                vardata3.setText("€100.00");
+                    vartext1.setText("Cover Start Date:");
+                    vartext2.setText("Renewal Date:");
+                    vartext3.setText("Monthly Premium:");
+
                     try {
-                        sDate.setText(jsonobject.getString(TAG_StartDate));
-                    } catch (JSONException e) {
-                        e.printStackTrace();}
-                    try {
-                        rDate.setText(jsonobject.getString(TAG_RenewalDate));
+                        PolicyName.setText(jsonobject.getString(TAG_planNamehealth));
+                        vardata1.setText(jsonobject.getString(TAG_StartDatehealth));
+                        vardata2.setText(jsonobject.getString(TAG_RenewalDatehealth));
+                        vardata3.setText("€"+jsonobject.getString(TAG_montPremhealth));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -422,6 +432,14 @@ private class FetchPolicyDetails extends AsyncTask<String, String, String> {
                 vartext1.setText("Maturity Date:");
                 vartext2.setText("Current Fund Value:");
                 vartext3.setText("Amount Invested:");
+                    try {
+                        PolicyName.setText(jsonobject.getString(TAG_planNameinvest));
+                        vardata1.setText(jsonobject.getString(TAG_matDateinvest));
+                        vardata2.setText("€"+jsonobject.getString(TAG_policyValueinvest));
+                        vardata3.setText("€"+jsonobject.getString(TAG_investAmountinvest));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
     }
                 mPlanType=pType;//Setting this to be used behind the button click
