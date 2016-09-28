@@ -35,8 +35,7 @@ import java.net.URL;
 
 public class AddPolicyActivity extends AppCompatActivity {
     static final int SCAN_QR_CODE = 1;
-    private static final String ADD_POLICY_URL = "http://52.174.106.218/AutService.asmx/AddPolicyToUser"; // azure
-    //private static final String ADD_POLICY_URL = "http://10.233.204.232:9090/AutService.asmx/AddPolicyToUser"; // internal
+    private static final String ADD_POLICY_URL = "/AutService.asmx/AddPolicyToUser"; // azure
     private EditText policyIdText;
     boolean onStart=true;
 
@@ -242,8 +241,15 @@ public class AddPolicyActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+            String server = "";
             try {
-                url = new URL(ADD_POLICY_URL+"?"+parameters);
+                server = Util.getProperty("server",getApplicationContext());
+            } catch (IOException e) {
+                e.printStackTrace();
+            };
+            try {
+                url = new URL(server + ADD_POLICY_URL+"?"+parameters);
+                System.out.println(url);
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

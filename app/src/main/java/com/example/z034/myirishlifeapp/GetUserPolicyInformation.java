@@ -55,6 +55,7 @@ public class GetUserPolicyInformation extends AsyncTask<Void, Void, Boolean> {
     protected Boolean doInBackground(Void... params)
     {
         URL myurl = null;
+
         try {
             myurl = new URL(targetURL + targetMethod + "?" + urlParameters);
         } catch (MalformedURLException e) {
