@@ -4,14 +4,19 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabReselectListener;
+import com.roughike.bottombar.OnTabSelectListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +38,9 @@ public class AddPolicyActivity extends AppCompatActivity {
     private static final String ADD_POLICY_URL = "http://52.174.106.218/AutService.asmx/AddPolicyToUser"; // azure
     //private static final String ADD_POLICY_URL = "http://10.233.204.232:9090/AutService.asmx/AddPolicyToUser"; // internal
     private EditText policyIdText;
+    boolean onStart=true;
+
+    private String userid, pincode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,102 @@ public class AddPolicyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_policy);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         policyIdText = (EditText) findViewById(R.id.policyNumberEditText);
+
+        BottomBar bottombar =(BottomBar) findViewById(R.id.bottomBar);
+        bottombar.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelected(@IdRes int tabId) {
+                if (tabId == R.id.tab_chat && !onStart) {
+                    Intent i = new Intent(AddPolicyActivity.this, OnlineChat.class);
+                    startActivity(i);
+                }
+                if (tabId == R.id.tab_call && !onStart) {
+                    String phno="tel:00353872411677";
+                    Intent i=new Intent(Intent.ACTION_DIAL, Uri.parse(phno));
+                    startActivity(i);
+                }
+                if (tabId == R.id.tab_email && !onStart) {
+                    Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    emailIntent.setType("vnd.android.cursor.item/email");
+                    emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"gunninmm@gmail.com"});
+                    emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Customer Service Request");
+                    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "I have a question");
+                    startActivity(Intent.createChooser(emailIntent, "Send mail using..."));
+                }
+                if (tabId == R.id.tab_request && !onStart) {
+                    new android.support.v7.app.AlertDialog.Builder(AddPolicyActivity.this)
+                            .setTitle("Request Call Back")
+                            .setMessage("Do you wish to request a call back on this device?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(AddPolicyActivity.this,"Your request has been logged. You will receive a call within x hours",Toast.LENGTH_LONG).show();
+                                    // we can send details of where they are in the app currently at this point
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(AddPolicyActivity.this,"Request cancelled",Toast.LENGTH_LONG).show();
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+
+                }
+
+            }
+        });
+        bottombar.setOnTabReselectListener(new OnTabReselectListener() {
+            @Override
+            public void onTabReSelected(@IdRes int tabId) {
+                if (tabId == R.id.tab_chat && !onStart) {
+                    Intent i = new Intent(AddPolicyActivity.this, OnlineChat.class);
+                    startActivity(i);
+                }
+                if (tabId == R.id.tab_call) {
+                    String phno="tel:00353872411677";
+                    Intent i=new Intent(Intent.ACTION_DIAL, Uri.parse(phno));
+                    startActivity(i);
+                }
+                if (tabId == R.id.tab_email) {
+                    Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    emailIntent.setType("vnd.android.cursor.item/email");
+                    emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"gunninmm@gmail.com"});
+                    emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Customer Service Request");
+                    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "I have a question");
+                    startActivity(Intent.createChooser(emailIntent, "Send mail using..."));
+                }
+                if (tabId == R.id.tab_request && !onStart) {
+                    new android.support.v7.app.AlertDialog.Builder(AddPolicyActivity.this)
+                            .setTitle("Request Call Back")
+                            .setMessage("Do you wish to request a call back on this device?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(AddPolicyActivity.this,"Your request has been logged. You will receive a call within x hours",Toast.LENGTH_LONG).show();
+                                    // we can send details of where they are in the app currently at this point
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(AddPolicyActivity.this,"Request cancelled",Toast.LENGTH_LONG).show();
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+
+                }
+            }
+        });
+
+        onStart = false;
+
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            userid = extras.getString(ApplicationConstants.Username);
+            pincode = extras.getString(ApplicationConstants.Pin);
+        }
     }
 
     public void btnScanPolicyClick(View v) {
@@ -61,8 +165,9 @@ public class AddPolicyActivity extends AppCompatActivity {
                     builder.setMessage("Policy " + policyId + " will be added to your account");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            String parameters = "userID=Yvonne.Mongo856&pin=1234" + "&policyID=" + policyId;
+                            String parameters = "userID=" + userid + "&pin=" + pincode + "&policyID=" + policyId;
                             new AddPolicy(parameters).execute(parameters);
+                            displayPolicyDetails(policyId);
                         }
                     });
                     builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -90,8 +195,9 @@ public class AddPolicyActivity extends AppCompatActivity {
             builder.setMessage("Policy " + policyIdText.getText() + " will be added to your account");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    String parameters = "userID=Yvonne.Mongo856&pin=1234" + "&policyID=" + policyIdText.getText();
+                    String parameters = "userID=" + userid +"&pin=" + pincode + "&policyID=" + policyIdText.getText();
                     new AddPolicy(parameters).execute(parameters);
+                    displayPolicyDetails(policyIdText.getText().toString());
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -105,6 +211,14 @@ public class AddPolicyActivity extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
         }
+    }
+
+    private void displayPolicyDetails(String policyNumber){
+        Intent addPolicyIntent = new Intent(getApplicationContext(), PolicyDetailsActivity.class);
+        addPolicyIntent.putExtra("PolicyNumber",policyNumber);
+        addPolicyIntent.putExtra(ApplicationConstants.Username, userid);
+        addPolicyIntent.putExtra(ApplicationConstants.Pin, pincode);
+        startActivity(addPolicyIntent);
     }
 
     private class AddPolicy extends AsyncTask<String, String, String> {

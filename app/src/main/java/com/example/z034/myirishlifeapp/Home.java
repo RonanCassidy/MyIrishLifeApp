@@ -11,10 +11,12 @@ import android.widget.Toast;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,12 +29,13 @@ import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
 public class Home extends AppCompatActivity {
-    boolean onStart=true;
+
 
     private String userId;
     private String Pin;
     private JSONArray PolicyInfo = null;
     private GridLayout PolicyGrid;
+    private Button addPolicy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +43,17 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         PolicyGrid = (GridLayout) findViewById(R.id.HomePolicyGrid);
+        addPolicy = (Button) findViewById(R.id.AddPolicy);
         Intent intent = getIntent();
         this.userId = intent.getStringExtra(ApplicationConstants.Username);
         this.Pin = intent.getStringExtra(ApplicationConstants.Pin);
         HttpUtilities.GetPolicyData(userId, Pin, getApplicationContext(), intent, PolicyGrid);
     }
 
-    public void AddPolicyButtonClick()
-    {
-        // Do something
+    public void AddPolicyButtonClick(View v) {
+        Intent addPolicyIntent = new Intent(getApplicationContext(), AddPolicyActivity.class);
+        addPolicyIntent.putExtra(ApplicationConstants.Username, userId);
+        addPolicyIntent.putExtra(ApplicationConstants.Pin, Pin);
+        startActivity(addPolicyIntent);
     }
 }

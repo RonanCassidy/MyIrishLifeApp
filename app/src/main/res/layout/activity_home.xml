@@ -10,13 +10,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/white"
     tools:context="com.example.z034.myirishlifeapp.Home">
+
     <ScrollView
         android:id="@+id/Home_Form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,4 +73,13 @@
                 android:onClick="AddPolicyButtonClick"/>
         </LinearLayout>
     </ScrollView>
+
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        app:bb_tabXmlResource="@xml/bottombar"
+        android:layout_height="56dp"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

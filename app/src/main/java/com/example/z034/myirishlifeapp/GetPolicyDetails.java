@@ -2,14 +2,21 @@ package com.example.z034.myirishlifeapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.widget.EditText;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,18 +32,27 @@ public class GetPolicyDetails extends AsyncTask<Void, Void, Boolean> {
     private final String targetURL;
     private final String targetMethod;
     private final String urlParameters;
-    private final String policyid;
+    private  String string;
     private final Context context;
-    String Type;
-    GetPolicyDetails(String targetURL, String method, String urlParameters, String policyid, Context context){
+    private String response;
+    private Boolean Timedout = false;
+    String PolicyType;
+    String sDate;
+    String rDate;
+
+
+    GetPolicyDetails(String targetURL, String method, String urlParameters, String policyid,String string, Context context){
         this.targetURL = targetURL;
         this.targetMethod = method;
         this.urlParameters = urlParameters;
-        this.policyid=policyid;
         this.context = context;
+        this.Timedout = false;
+        this.string=string;
+
     }
 
-    protected Boolean doInBackground(Void... params) {
+    protected Boolean doInBackground(Void... params)
+    {
         URL myurl = null;
         try {
             myurl = new URL(targetURL + targetMethod + "?" + urlParameters);
@@ -45,8 +61,7 @@ public class GetPolicyDetails extends AsyncTask<Void, Void, Boolean> {
         }
         try {
             URLConnection myconn = myurl.openConnection();
-            InputStream blah = myconn.getInputStream();
-            InputStream in = new BufferedInputStream(blah);
+            InputStream in = new BufferedInputStream(myconn.getInputStream());
             InputStreamReader reader = new InputStreamReader(in);
             BufferedReader br = new BufferedReader(reader);
             String line;
@@ -54,39 +69,37 @@ public class GetPolicyDetails extends AsyncTask<Void, Void, Boolean> {
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
-
             JSONObject response = null;
             try {
                 response = new JSONObject(sb.toString());
-                if(response.length()!=0){
-                    Type=response.get("policyType").toString();
-                    Type=response.get("startDate").toString();
-                    Type=response.get("renewalDate").toString();
-                    Type=response.get("policyID").toString();
-                    return true;}
+                if(response.length()!=0)
+                {
+                    PolicyType= response.get("policyType").toString();
+                    sDate= response.get("startDate").toString();
+                    rDate= response.get("renewalDate").toString();
+                    string=PolicyType;
+                    return true;
+                }
+
                 else return false;
             } catch (JSONException e) {
                 e.printStackTrace();
-                //String err = "Cannot create JSONObject with response from server. Response '" + sb.toString() +"'";
-                //throw new JSONException(err);
             }
 
             return true;
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Timedout = true;
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
         return false;
     }
-    protected void onPostExecute(final Boolean success) {
-        if (success) {
-            Intent home = new Intent(context, Home.class);
-            home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(home);
-            String s1 = "Succesdfhkks!!!";
-            //redirect
-        } else {
 
-        }
+    private String CreateTextViewForPolicyTable(String text)
+    {
+       return PolicyType;
     }
 }
