@@ -5,10 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     android:weightSum="1">
 
     <EditText
@@ -20,7 +17,8 @@
         android:enabled="false"
         android:layout_below="@+id/name"
         android:layout_alignLeft="@+id/name"
-        android:layout_alignStart="@+id/name" />
+        android:layout_alignStart="@+id/name"
+        android:paddingRight="@dimen/activity_horizontal_margin"/>
 
     <EditText
         android:layout_width="278dp"
@@ -53,7 +51,8 @@
         android:enabled="false"
         android:layout_below="@+id/mobile"
         android:layout_alignLeft="@+id/mobile"
-        android:layout_alignStart="@+id/mobile" />
+        android:layout_alignStart="@+id/mobile"
+        android:paddingRight="@dimen/activity_horizontal_margin"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -63,7 +62,8 @@
         android:id="@+id/eircode"
         android:layout_below="@+id/address"
         android:layout_alignLeft="@+id/address"
-        android:layout_alignStart="@+id/address" />
+        android:layout_alignStart="@+id/address"
+        android:paddingRight="@dimen/activity_horizontal_margin"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -76,6 +76,7 @@
         android:background="@drawable/rounded_edittext"
         android:textSize="16sp"
         android:textColor="#FFFF"
+        android:paddingRight="@dimen/activity_horizontal_margin"
         />
 
     <Button
@@ -86,42 +87,8 @@
         android:visibility="visible"
         android:onClick="saveClick"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/address"
-        android:layout_alignEnd="@+id/address"
-        android:layout_marginBottom="65dp"
-        android:background="@drawable/rounded_edittext"
-        android:textSize="16sp"
-        android:textColor="#FFFF"/>
-
-
-    <Button
-        android:text="Cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:id="@+id/cancel"
-        android:visibility="visible"
-        android:onClick="cancelClick"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/save"
-        android:layout_toStartOf="@+id/save"
-        android:layout_marginBottom="65dp"
-        android:background="@drawable/rounded_edittext"
-        android:textSize="16sp"
-        android:textColor="#FFFF"/>
-
-
-    <Button
-        android:text="Use Eircode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:id="@+id/useeircode"
-        android:onClick="useEircodeClick"
-        android:elevation="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/cancel"
-        android:layout_toStartOf="@+id/cancel"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
         android:layout_marginBottom="65dp"
         android:background="@drawable/rounded_edittext"
         android:textSize="16sp"
@@ -136,7 +103,11 @@
         android:layout_alignBaseline="@+id/name"
         android:layout_alignBottom="@+id/name"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"/>
 
     <EditText
         android:layout_width="278dp"
@@ -160,7 +131,11 @@
         android:layout_alignBaseline="@+id/dob"
         android:layout_alignBottom="@+id/dob"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"/>
 
     <TextView
         android:text="Email:"
@@ -170,7 +145,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="10dp"
-        android:id="@+id/emailView" />
+        android:id="@+id/emailView"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"/>
 
     <TextView
         android:text="Mobile:"
@@ -180,7 +159,11 @@
         android:layout_alignBaseline="@+id/mobile"
         android:layout_alignBottom="@+id/mobile"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"/>
 
     <TextView
         android:text="Address:"
@@ -190,7 +173,11 @@
         android:layout_alignBaseline="@+id/address"
         android:layout_alignBottom="@+id/address"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"/>
 
     <TextView
         android:text="Eircode:"
@@ -201,7 +188,11 @@
         android:layout_alignBottom="@+id/eircode"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="useEircodeClick"/>
+        android:onClick="useEircodeClick"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"/>
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
@@ -211,5 +202,38 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true" />
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancel"
+        android:visibility="visible"
+        android:onClick="cancelClick"
+        android:background="@drawable/rounded_edittext"
+        android:textSize="16sp"
+        android:textColor="#FFFF"
+        android:layout_alignBaseline="@+id/save"
+        android:layout_alignBottom="@+id/save"
+        android:layout_toRightOf="@+id/useeircode"
+        android:layout_toEndOf="@+id/useeircode"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp" />
+
+    <Button
+        android:text="Use Eircode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/useeircode"
+        android:onClick="useEircodeClick"
+        android:elevation="0dp"
+        android:background="@drawable/rounded_edittext"
+        android:textSize="16sp"
+        android:textColor="#FFFF"
+        android:layout_alignBaseline="@+id/cancel"
+        android:layout_alignBottom="@+id/cancel"
+        android:layout_toLeftOf="@+id/update"
+        android:layout_toStartOf="@+id/update"
+        android:layout_marginLeft="15dp"/>
 
 </RelativeLayout>

@@ -189,23 +189,6 @@
         android:textColor="@color/bb_darkBackgroundColor"/>
 
 
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text ="Further Details"
-        android:paddingRight="15dp"
-        android:paddingLeft="15dp"
-        android:layout_marginTop="50dp"
-        android:id="@+id/btnfurtherdetails"
-        android:layout_below="@+id/Vartext3"
-        android:layout_alignLeft="@+id/PolicyDetails"
-
-        android:textSize="15dp"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:background="#50c9b5"
-        android:onClick="FurtherDetailsClick" />
-
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
         app:bb_tabXmlResource="@xml/bottombar"
@@ -225,5 +208,20 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/DOBtext"
         android:layout_toEndOf="@+id/DOBtext" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text ="Further Details"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:id="@+id/btnfurtherdetails"
+
+        android:textSize="15dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="#50c9b5"
+        android:onClick="FurtherDetailsClick"
+        android:layout_below="@+id/Vartext3"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

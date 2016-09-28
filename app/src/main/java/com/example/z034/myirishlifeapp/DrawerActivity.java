@@ -202,6 +202,7 @@ public class DrawerActivity extends Home
             userDetailIntent.putExtra(ApplicationConstants.Pin, intent.getStringExtra(ApplicationConstants.Pin));
             startActivity(userDetailIntent);
         } else if (id == R.id.my_policies) {
+          
 
         } else if (id == R.id.add_policy) {
             Intent addPolicyIntent = new Intent(getApplicationContext(), AddPolicyActivity.class);
