@@ -1,5 +1,7 @@
 package com.example.z034.myirishlifeapp;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -70,12 +72,17 @@ public class PolicyDetailsActivity extends AppCompatActivity {
     private static final String TAG_policyValueinvest = "Policy Value ";
     private static final String TAG_planNameinvest = "Plan Name";
     private static final String TAG_investAmountinvest = "Invest Amount ";
+    private String userid, pincode;
+
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.policy_details);
         Bundle extras = getIntent().getExtras();
         String PolicyNo = extras.getString("PolicyNumber");
+        userid = extras.getString(ApplicationConstants.Username);
+        pincode = extras.getString(ApplicationConstants.Pin);
 
         TextView vartext1 = (TextView) findViewById(R.id.Vartext1);
         TextView vartext2 = (TextView) findViewById(R.id.Vartext2);
@@ -114,7 +121,7 @@ public class PolicyDetailsActivity extends AppCompatActivity {
                             .setMessage("Do you wish to request a call back on this device?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(PolicyDetailsActivity.this, "Your request has been logged. You will receive a call within x hours", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(PolicyDetailsActivity.this, "Your request has been logged. You will receive a call within 24 hours", Toast.LENGTH_LONG).show();
                                     // we can send details of where they are in the app currently at this point
                                 }
                             })
@@ -157,7 +164,7 @@ public class PolicyDetailsActivity extends AppCompatActivity {
                             .setMessage("Do you wish to request a call back on this device?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(PolicyDetailsActivity.this, "Your request has been logged. You will receive a call within x hours", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(PolicyDetailsActivity.this, "Your request has been logged. You will receive a call within 24 hours", Toast.LENGTH_LONG).show();
                                     // we can send details of where they are in the app currently at this point
                                 }
                             })
@@ -212,8 +219,8 @@ public class PolicyDetailsActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             try {
-                // need to change this to use real userId and pin!!
-                url = new URL(FETCH_URL +User_URL+ "?userID=Yvonne.Mongo856&pin=1234");
+
+                url = new URL(FETCH_URL +User_URL+ "?userID="+userid+"&pin="+pincode);
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -312,7 +319,10 @@ private class FetchPolicyDetails extends AsyncTask<String, String, String> {
     protected String doInBackground(String... params) {
         try {
             // need to change this to use real userId and pin!!
-            url = new URL(FETCH_URL +Policy_URL+ "?userID=Yvonne.Mongo856&pin=1234&policyID="+PolicyNumber);
+
+
+
+            url = new URL(FETCH_URL +Policy_URL+ "?userID="+userid+"&pin="+pincode+"&policyID="+PolicyNumber);
 
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
