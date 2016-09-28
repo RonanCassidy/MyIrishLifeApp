@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.z034.myirishlifeapp.FirstTimeLoginActivity">
+    tools:context="com.example.z034.myirishlifeapp.FirstTimeLoginActivity"
+    android:background="@color/white">
 
     <TextView
         android:text="@string/FirstTimeLogin_UserId"
@@ -44,7 +45,8 @@
         android:background="@drawable/rounded_edittext"
         tools:textColor="#FFFFFF"
         android:width="220dp"
-        android:onClick="SubmitButtonClick" />
+        android:onClick="SubmitButtonClick"
+        android:textColor="@color/white" />
 
     <Button
         android:text="@string/FirstTimeLogin_Scan"
@@ -58,7 +60,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/button5"
         android:layout_alignStart="@+id/button5"
-        android:onClick="ScanButtonClick"/>
+        android:onClick="ScanButtonClick"
+        android:textColor="@color/white" />
 
     <Button
         android:text="@string/FirstTimeLogin_Register"
@@ -72,7 +75,8 @@
         android:onClick="RegisterButtonClick"
         android:layout_below="@+id/button4"
         android:layout_alignLeft="@+id/button4"
-        android:layout_alignStart="@+id/button4" />
+        android:layout_alignStart="@+id/button4"
+        android:textColor="@color/white" />
 
     <EditText
         android:layout_width="wrap_content"
