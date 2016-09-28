@@ -27,7 +27,7 @@ import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
 public class Home extends AppCompatActivity {
-    boolean onStart=true;
+
 
     private String userId;
     private String Pin;
