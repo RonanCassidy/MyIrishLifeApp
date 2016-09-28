@@ -192,19 +192,26 @@ public class DrawerActivity extends Home
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        Intent intent = getIntent();
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.my_details) {
             Intent userDetailIntent = new Intent(getApplicationContext(), UserDetailActivity.class);
+            userDetailIntent.putExtra(ApplicationConstants.Username, intent.getStringExtra(ApplicationConstants.Username));
+            userDetailIntent.putExtra(ApplicationConstants.Pin, intent.getStringExtra(ApplicationConstants.Pin));
             startActivity(userDetailIntent);
         } else if (id == R.id.my_policies) {
 
         } else if (id == R.id.add_policy) {
             Intent addPolicyIntent = new Intent(getApplicationContext(), AddPolicyActivity.class);
+            addPolicyIntent.putExtra(ApplicationConstants.Username, intent.getStringExtra(ApplicationConstants.Username));
+            addPolicyIntent.putExtra(ApplicationConstants.Pin, intent.getStringExtra(ApplicationConstants.Pin));
             startActivity(addPolicyIntent);
         } else if (id == R.id.web_login) {
             Intent webLoginIntent = new Intent(getApplicationContext(),InitiateWebSessionActivity.class);
+            webLoginIntent.putExtra(ApplicationConstants.Username, intent.getStringExtra(ApplicationConstants.Username));
+            webLoginIntent.putExtra(ApplicationConstants.Pin, intent.getStringExtra(ApplicationConstants.Pin));
             startActivity(webLoginIntent);
         } else if (id == R.id.tools) {
 

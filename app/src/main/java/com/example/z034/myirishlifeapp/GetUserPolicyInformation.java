@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.support.annotation.DrawableRes;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
@@ -103,8 +106,8 @@ public class GetUserPolicyInformation extends AsyncTask<Void, Void, Boolean> {
                         String policyType = row.get(ApplicationConstants.PolicyType).toString();
                         String policyNumber = row.get(ApplicationConstants.PolicyId).toString();
 
-                        PolicyGrid.addView(this.CreateTextViewForPolicyTable(policyType));
-                        PolicyGrid.addView(this.CreateTextViewForPolicyTable(policyNumber));
+                        PolicyGrid.addView(this.CreateTextViewForPolicyTable(policyType, false));
+                        PolicyGrid.addView(this.CreateTextViewForPolicyTable(policyNumber, true));
 
                     }
                     catch(JSONException e)
@@ -121,7 +124,7 @@ public class GetUserPolicyInformation extends AsyncTask<Void, Void, Boolean> {
         }
     }
 
-    private TextView CreateTextViewForPolicyTable(String text)
+    private TextView CreateTextViewForPolicyTable(String text, Boolean isPolicyNumber)
     {
         TextView cell = new TextView(this.context);
         cell.setText(text);
@@ -130,6 +133,25 @@ public class GetUserPolicyInformation extends AsyncTask<Void, Void, Boolean> {
         cell.setTextColor(Color.BLACK);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(300, LinearLayout.LayoutParams.MATCH_PARENT);
         cell.setLayoutParams(params);
+        if(isPolicyNumber) {
+            PolicyGridOnClickListner listener = new PolicyGridOnClickListner(this.UserID, this.Pin, text, this.context, this.intent);
+            cell.setOnClickListener(listener);
+        }
         return cell;
     }
+
+    /*private Button CreateButtonForPolicyNumber(String text)
+    {
+        Button cell = new Button(this.context);
+        cell.setText(text);
+        cell.setTextSize(18);
+        cell.setWidth(18);
+        cell.setTextColor(Color.BLACK);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(300, LinearLayout.LayoutParams.MATCH_PARENT);
+        cell.setBackgroundColor(Color.WHITE);
+        cell.(R.style.BorderLessButton);
+        cell.setLayoutParams(params);
+        return cell;
+    }*/
 }
+
