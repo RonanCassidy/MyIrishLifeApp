@@ -24,14 +24,9 @@
 
     <group>
         <item
-            android:id="@+id/inbox"
-            android:title="Inbox" />
-        <item
             android:id="@+id/contact_us"
             android:title="Contact Us" />
-        <item
-            android:id="@+id/about"
-            android:title="About" />
+
     </group>
 
 
