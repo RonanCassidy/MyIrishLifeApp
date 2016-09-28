@@ -55,6 +55,7 @@ public class UserDetailActivity extends AppCompatActivity {
     private TextView eircodeView;
     private Button update, save, cancel, useeircode;
     private boolean updated, canListenInput;
+    private String userid, pincode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,13 @@ public class UserDetailActivity extends AppCompatActivity {
         save = (Button) findViewById(R.id.save);
         cancel = (Button) findViewById(R.id.cancel);
         useeircode = (Button) findViewById(R.id.useeircode);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            userid = extras.getString(ApplicationConstants.Username);
+            pincode = extras.getString(ApplicationConstants.Pin);
+        }
+
 
         TextWatcher tw = new TextWatcher(){
             @Override
@@ -122,9 +130,9 @@ public class UserDetailActivity extends AppCompatActivity {
                     // change to use real userId and password
                     String urlParams = null;
                     try {
-                        urlParams = "userID=Yvonne.Mongo856&pin=1234" +
-                                "&email="+email.getText().toString() +
-                                "&mobile=" + phone.getText().toString() +
+                        urlParams = "userID="+userid+"&pin=" + pincode +
+                                "&email="+ URLEncoder.encode(email.getText().toString(), "UTF-8") +
+                                "&mobile=" + URLEncoder.encode(phone.getText().toString(), "UTF-8") +
                                 "&address=" + URLEncoder.encode(address.getText().toString(), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
@@ -213,8 +221,7 @@ public class UserDetailActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             try {
-                // need to change this to use real userId and pin!!
-                url = new URL(FETCH_URL+"?userID=Yvonne.Mongo856&pin=1234");
+                url = new URL(FETCH_URL+"?userID="+userid+"&pin=" + pincode);
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -319,6 +326,7 @@ public class UserDetailActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             try {
                 url = new URL(SAVE_URL+"?"+parameters);
+                System.out.println("***" + url);
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -336,6 +344,7 @@ public class UserDetailActivity extends AppCompatActivity {
             try {
                 int response_code = conn.getResponseCode();
                 // Check if successful connection made
+                System.out.println("response_code "+response_code);
                 if (response_code == HttpURLConnection.HTTP_OK) {
                     // Read data sent from server
                     InputStream input = conn.getInputStream();

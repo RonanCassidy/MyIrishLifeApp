@@ -34,12 +34,19 @@ public class InitiateWebSessionActivity extends AppCompatActivity {
 
     static final int SCAN_QR_CODE = 2;
     private static final String WEB_SESSION_URL = "http://52.174.106.218/AutService.asmx/AddSession";
+    private String userid, pincode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initiate_web_session);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            userid = extras.getString(ApplicationConstants.Username);
+            pincode = extras.getString(ApplicationConstants.Pin);
+        }
 
     }
 
@@ -55,7 +62,7 @@ public class InitiateWebSessionActivity extends AppCompatActivity {
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
                     final String sessionId = data.getStringExtra("qrcode_details");
-                    String parms = "sessionID="+sessionId + "&userID=Yvonne.Mongo856&pin=1234";
+                    String parms = "sessionID="+sessionId + "&userID=" + userid + "&pin="+pincode;
                     new StartWebSession(parms).execute();
                 }
 
