@@ -217,13 +217,9 @@ public class DrawerActivity extends Home
             Intent toolboxIntent = new Intent(getApplicationContext(),Toolbox.class);
             startActivity(toolboxIntent);
 
-        } else if (id == R.id.inbox) {
-
         } else if (id == R.id.contact_us) {
             Intent contactIntent = new Intent(getApplicationContext(), ContactUsActivity.class);
             startActivity(contactIntent);
-        }else if (id == R.id.about) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
