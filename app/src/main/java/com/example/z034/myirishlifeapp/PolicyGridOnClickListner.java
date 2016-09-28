@@ -24,6 +24,11 @@ public class PolicyGridOnClickListner implements View.OnClickListener {
     @Override
     public void onClick(View v)
     {
-        //Do something
+        Intent addPolicyIntent = new Intent(this.Context, PolicyDetailsActivity.class);
+        addPolicyIntent.putExtra("PolicyNumber",PolicyId);
+        addPolicyIntent.putExtra(ApplicationConstants.Pin,this.Pin);
+        addPolicyIntent.putExtra(ApplicationConstants.Username,this.UserId);
+        addPolicyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        this.Context.startActivity(addPolicyIntent);
     }
 }
