@@ -36,7 +36,6 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.roughike:bottom-bar:2.0.2'
 
-
     // if play-services-gcm:9.6.0 doesn't work, try using version 9.4.0
     compile 'com.google.android.gms:play-services-gcm:9.6.0'
     compile 'com.google.android.gms:play-services-maps:9.6.0'

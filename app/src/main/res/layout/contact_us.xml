@@ -1,17 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@color/white"
+   >
 
     <TextView
-        android:text="We would love to hear from you."
+        android:text="@string/Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Contact_header"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:layout_marginBottom="80dp"/>
+    <TextView
+        android:text="@string/ContactNumber"
+        android:id="@+id/Contact_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Contact_header"
+        android:layout_marginBottom="40dp"
+        android:textStyle="bold"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="15dp"
+        android:textSize="15dp"/>
+    <TextView
+        android:text="@string/NumberCall"
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Contact_header"
+        android:layout_toRightOf="@+id/Contact_number"
+        android:layout_marginBottom="40dp"
+        android:textColor="#ADD8E6"
+        android:textSize="15dp"/>
+    <TextView
+        android:text="@string/ContactEmail"
+        android:id="@+id/Contact_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Contact_number"
+        android:layout_marginBottom="40dp"
+        android:textStyle="bold"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="15dp"
+        android:textSize="15dp"/>
+    <TextView
+        android:text="@string/EmailAddress"
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/number"
+        android:layout_toRightOf="@+id/Contact_number"
+        android:layout_marginBottom="40dp"
+        android:textColor="#ADD8E6"
+        android:textSize="15dp"/>
+    <TextView
+        android:text="@string/ContactAddress"
+        android:id="@+id/Contact_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Contact_email"
+        android:layout_marginBottom="40dp"
+        android:textStyle="bold"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="15dp"
+        android:textSize="15dp"/>
+    <TextView
+        android:text="@string/Address1"
+        android:id="@+id/address1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/email"
+        android:layout_toRightOf="@+id/Contact_number"
+        android:layout_marginBottom="5dp"
+        android:textColor="#ADD8E6"
+        android:textSize="15dp"/>
+    <TextView
+        android:text="@string/Address2"
+        android:id="@+id/address2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/address1"
+        android:layout_toRightOf="@+id/Contact_number"
+        android:layout_marginBottom="5dp"
+        android:textColor="#ADD8E6"
+        android:textSize="15dp"/>
+    <TextView
+        android:text="@string/Address3"
+        android:id="@+id/address3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/address2"
+        android:layout_toRightOf="@+id/Contact_number"
+        android:layout_marginBottom="40dp"
+        android:textColor="#ADD8E6"
+        android:textSize="15dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Request Call Back"
+        android:layout_below="@+id/address3"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@id/Contact_address"
+        android:id="@+id/btnRequestCall"
+        android:textSize="16sp"
+        android:textColor="#FFFF"
+        android:background="@drawable/rounded_edittext"/>
+
+
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
@@ -21,6 +123,5 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true" />
-
 
 </RelativeLayout>

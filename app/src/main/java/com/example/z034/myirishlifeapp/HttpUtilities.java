@@ -27,6 +27,7 @@ public class HttpUtilities {
 
     public static final String AuthenticateServerUrl = "http://52.174.106.218/AutService.asmx/";
     public static final String AuthenticateWithPin = "AuthenticateWithPin";
+    public static final String GetUserPolicyDetails = "GetUserPolicyDetails";
     public static final String AuthenticateWithPassword = "AuthenticateWithPassword";
     public static final String GetUserPolicyInfo = "GetUserPolicyList";
 
@@ -42,6 +43,14 @@ public class HttpUtilities {
         UserLoginPin loginWithPin = new UserLoginPin(AuthenticateServerUrl, AuthenticateWithPin, username, pin, pinField, context);
         loginWithPin.execute((Void) null);
     }
+
+    public static void RetreivePolicyDetail(String username, String pin, String policyID, Context context)
+    {
+        String query = "userID=" + username + "&" + "pin=" + pin+ "&" + "policyID="+policyID;
+        GetPolicyDetails Singlepolicydetail = new GetPolicyDetails(AuthenticateServerUrl, GetUserPolicyDetails, query, policyID, context);
+        Singlepolicydetail.execute((Void) null);
+    }
+
 
     public static void GetPolicyData(String userId, String pin, Context context, Intent intent, GridLayout PolicyGrid)
     {

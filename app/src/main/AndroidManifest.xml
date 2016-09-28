@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -27,7 +28,14 @@
             android:label="@string/title_activity_drawer"
             android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop">
+        </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps">
         </activity>
         <activity
             android:name=".OnlineChat"
@@ -42,6 +50,17 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DrawerActivity" />
+        </activity>
+
+        <activity android:name=".PolicyDetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PolicyDetailsActivity"/>
+        </activity>
+        <activity android:name=".FurtherDetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity"/>
         </activity>
         <activity android:name=".ContactUsActivity">
             <meta-data

@@ -10,6 +10,7 @@
     <string name="FirstTimeLogin_Submit">Submit</string>
 
     <string name="title_activity_display_online_chat">DisplayOnlineChat</string>
+    <!-- Chat -->
     <string name="chathint">Enter Text</string>
     <string name="BotChat1">  Welcome to customer chat.  </string>
     <string name="BotChat2"></string>
@@ -32,8 +33,17 @@
         <item>Im sorry Dave I cant let you do that -Hal 9000</item>
         <item>Ill be back!</item>
         <item>Dedicated to Prabeesh</item>
-
     </string-array>
+    <!-- Contact Us -->
+    <string name="Title">Contact Us</string>
+    <string name="ContactNumber">Contact Number:</string>
+    <string name="NumberCall"> +353 872411677</string>
+    <string name="ContactEmail">Contact Email:</string>
+    <string name="EmailAddress">gunninmm@gmail.com</string>
+    <string name="ContactAddress">Address:</string>
+    <string name="Address1">1 Abbey Street Lower,</string>
+    <string name="Address2">Dublin,</string>
+    <string name="Address3">D01 PK03</string>
 
     <string name="title_activity_drawer">MyIrishLifeApp</string>
     <string name="title_activity_tab">TabActivity</string>
@@ -77,6 +87,15 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- Maps screen-->
+
+    <string name="title_activity_maps">Map</string>
+
+    <!-- Policy Details screen-->
+    <string name="Policy_details_title_page">Policy Details</string>
+
+
     <string name="init_web_session">Visit the MyIrishLife on your computer and scan the QR code</string>
+
 
 </resources>

@@ -119,7 +119,8 @@ public class DrawerActivity extends Home
         } else if (id == R.id.inbox) {
 
         } else if (id == R.id.contact_us) {
-
+            Intent contactIntent = new Intent(getApplicationContext(), ContactUsActivity.class);
+            startActivity(contactIntent);
         }else if (id == R.id.about) {
 
         }
