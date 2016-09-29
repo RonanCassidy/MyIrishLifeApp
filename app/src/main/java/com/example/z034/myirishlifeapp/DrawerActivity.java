@@ -2,11 +2,13 @@ package com.example.z034.myirishlifeapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -35,10 +37,15 @@ public class DrawerActivity extends Home
     private GridLayout PolicyGrid;
     private TextView nav_user;
     boolean onStart=true;
+    private View topLevelLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
+        topLevelLayout = findViewById(R.id.top_layout);
+        isFirstTime();
+        //ljknsadfjklnas
+            //topLevelLayout.setVisibility(View.INVISIBLE);
 
         BottomBar bottombar =(BottomBar) findViewById(R.id.bottomBar);
         bottombar.setOnTabSelectListener(new OnTabSelectListener() {
@@ -188,7 +195,30 @@ public class DrawerActivity extends Home
 
         return super.onOptionsItemSelected(item);
     }
+    private boolean isFirstTime()
+    {
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        boolean ranBefore = preferences.getBoolean("RanBefore", false);
+        //if (!ranBefore) {
 
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("RanBefore", true);
+        editor.commit();
+        topLevelLayout.setVisibility(View.VISIBLE);
+        topLevelLayout.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                topLevelLayout.setVisibility(View.INVISIBLE);
+                return false;
+            }
+
+        });
+
+
+        //}
+        return ranBefore;
+
+    }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

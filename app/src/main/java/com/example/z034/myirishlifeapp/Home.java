@@ -2,11 +2,13 @@ package com.example.z034.myirishlifeapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.widget.Toast;
 
 import android.content.Intent;
@@ -36,11 +38,11 @@ public class Home extends AppCompatActivity {
     private JSONArray PolicyInfo = null;
     private GridLayout PolicyGrid;
     private Button addPolicy;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         PolicyGrid = (GridLayout) findViewById(R.id.HomePolicyGrid);
         addPolicy = (Button) findViewById(R.id.AddPolicy);
@@ -48,6 +50,7 @@ public class Home extends AppCompatActivity {
         this.userId = intent.getStringExtra(ApplicationConstants.Username);
         this.Pin = intent.getStringExtra(ApplicationConstants.Pin);
         HttpUtilities.GetPolicyData(userId, Pin, getApplicationContext(), intent, PolicyGrid);
+
     }
 
     public void AddPolicyButtonClick(View v) {
@@ -56,4 +59,5 @@ public class Home extends AppCompatActivity {
         addPolicyIntent.putExtra(ApplicationConstants.Pin, Pin);
         startActivity(addPolicyIntent);
     }
+
 }
