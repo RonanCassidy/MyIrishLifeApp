@@ -250,7 +250,11 @@ public class DrawerActivity extends Home
         } else if (id == R.id.contact_us) {
             Intent contactIntent = new Intent(getApplicationContext(), ContactUsActivity.class);
             startActivity(contactIntent);
+        } else if(id== R.id.who_am_i){
+            Intent myQrCodeIntent = new Intent(getApplicationContext(), MyQrCode.class);
+            startActivity(myQrCodeIntent);
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

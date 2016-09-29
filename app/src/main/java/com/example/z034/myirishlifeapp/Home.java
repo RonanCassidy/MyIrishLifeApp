@@ -90,10 +90,7 @@ public class Home extends AppCompatActivity {
                         PreferenceManager.getDefaultSharedPreferences(context);
                 boolean sentToken = sharedPreferences
                         .getBoolean(PushNotePreferences.SENT_TOKEN_TO_SERVER, false);
-                if (sentToken) {
-                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.gcm_send_message), duration);
-                    toast.show();
-                } else {
+                if (!sentToken) {
                     Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.token_error_message), duration);
                     toast.show();
                 }
