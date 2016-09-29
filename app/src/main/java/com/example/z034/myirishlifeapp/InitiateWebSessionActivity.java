@@ -38,7 +38,9 @@ import java.net.URL;
 public class InitiateWebSessionActivity extends AppCompatActivity {
     boolean onStart=true;
     static final int SCAN_QR_CODE = 2;
-    private static final String WEB_SESSION_URL = "http://testlife.cloudapp.net/AutService.asmx/AddSession";
+
+    private static final String WEB_SESSION_URL = "/AutService.asmx/AddSession";
+
     private String userid, pincode;
 
     @Override
@@ -186,8 +188,14 @@ public class InitiateWebSessionActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+            String server = "";
             try {
-                url = new URL(WEB_SESSION_URL+"?"+parameters);
+                server = Util.getProperty("server",getApplicationContext());
+            } catch (IOException e) {
+                e.printStackTrace();
+            };
+            try {
+                url = new URL(server + WEB_SESSION_URL+"?"+parameters);
                 System.out.println("URL: "+url);
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block

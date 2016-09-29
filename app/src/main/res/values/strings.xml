@@ -1,6 +1,7 @@
 <resources>
+    <!-- App settings -->
     <string name="app_name">MyIrishLifeApp</string>
-    <!-- First time login screen -->
+        <!-- First time login screen -->
     <string name="FirstTimeLogin_PasswordHint">Password</string>
     <string name="FirstTimeLogin_UserId">User: </string>
     <string name="FirstTimeLogin_UserIdHint">User Id</string>
