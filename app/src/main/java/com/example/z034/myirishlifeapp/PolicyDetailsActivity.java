@@ -40,7 +40,7 @@ import java.text.SimpleDateFormat;
  */
 
 public class PolicyDetailsActivity extends AppCompatActivity {
-    private static final String FETCH_URL = "http://52.174.106.218/AutService.asmx/"; //azure
+    private static final String FETCH_URL = "AutService.asmx/"; //azure
     private static final String User_URL="GetUserDetails";
     private static final String Policy_URL="GetUserPolicyDetails";
     boolean onStart = true;
@@ -218,9 +218,16 @@ public class PolicyDetailsActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+            String server="";
+            try
+            {
+                server = Util.getProperty("server",getApplicationContext());
+            } catch (IOException e) {
+                e.printStackTrace();
+            };
             try {
 
-                url = new URL(FETCH_URL +User_URL+ "?userID="+userid+"&pin="+pincode);
+                url = new URL(server+FETCH_URL +User_URL+ "?userID="+userid+"&pin="+pincode);
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -317,12 +324,16 @@ private class FetchPolicyDetails extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... params) {
+        String server="";
+        try
+        {
+            server = Util.getProperty("server",getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        };
         try {
-            // need to change this to use real userId and pin!!
 
-
-
-            url = new URL(FETCH_URL +Policy_URL+ "?userID="+userid+"&pin="+pincode+"&policyID="+PolicyNumber);
+            url = new URL(server+FETCH_URL +Policy_URL+ "?userID="+userid+"&pin="+pincode+"&policyID="+PolicyNumber);
 
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
