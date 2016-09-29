@@ -24,7 +24,7 @@ public class WebActivity extends AppCompatActivity {
         String url = intent.getStringExtra("link");
         ab = getSupportActionBar();
         mWebView = (WebView) findViewById(R.id.webView);
-
+        ab = getSupportActionBar();
         mWebView.setWebViewClient(new WebViewClient()
         {
             @Override

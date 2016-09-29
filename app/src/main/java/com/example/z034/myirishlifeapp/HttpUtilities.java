@@ -29,12 +29,12 @@ public class HttpUtilities {
 
     public static final String AuthenticateServerUrl = "/AutService.asmx/";
 
-
     public static final String AuthenticateWithPin = "AuthenticateWithPin";
     public static final String GetUserPolicyDetails = "GetUserPolicyDetails";
     public static final String AuthenticateWithPassword = "AuthenticateWithPassword";
     public static final String RequestCallBackmethod = "RequestCallback";
     public static final String GetUserPolicyInfo = "GetUserPolicyList";
+    public static final String StoreUserDevice = "StoreUserDevice";
 
 
     public static void AuthenticateUserWithPassword(String username, String password, Context context, Intent intent)
@@ -54,6 +54,12 @@ public class HttpUtilities {
     {
         GetUserPolicyInformation getNewUserInfoTask = new GetUserPolicyInformation(getEndpoint(context), GetUserPolicyInfo, userId, pin, context, intent, PolicyGrid);
         getNewUserInfoTask.execute((Void) null);
+    }
+
+    public static void SendDeviceTokensToServer(String username, String token, Context context)
+    {
+        ProcessDeviceToken processDeviceToken = new ProcessDeviceToken(getEndpoint(context), StoreUserDevice, username, token);
+        processDeviceToken.execute((Void) null);
     }
 
     public static String GetServerResponse(URL myurl) {

@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -12,8 +13,18 @@ import com.google.android.gms.gcm.GcmPubSub;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.Object;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Created by y424 on 23/09/2016.
@@ -22,6 +33,7 @@ import java.lang.Object;
 public class GCMRegistrationIntentService extends IntentService {
     private static final String TAG = "RegIntentService";
     private static final String[] TOPICS = {"global"};
+    private String userid;
 
     public GCMRegistrationIntentService() {
         super(TAG);
@@ -46,10 +58,15 @@ public class GCMRegistrationIntentService extends IntentService {
             Log.i(TAG, "GCM Registration Token: " + token);
 
             // TODO: Implement this method to send any registration to your app's servers.
-            sendRegistrationToServer(token);
+            //sendRegistrationToServer(token);
 
+            Bundle extras = intent.getExtras();
+            userid = extras.getString(ApplicationConstants.Username);
+            sendRegistrationToServer(userid, token);
+            Log.i(TAG, "Token sent to server. About to subscribe");
             // Subscribe to topic channels
             subscribeTopics(token);
+            Log.i(TAG, "Token subscribed");
 
             // You should store a boolean that indicates whether the generated token has been
             // sent to your server. If the boolean is false, send the token to your server,
@@ -70,14 +87,17 @@ public class GCMRegistrationIntentService extends IntentService {
     /**
      * Persist registration to third-party servers.
      *
-     * Modify this method to associate the user's GCM registration token with any server-side account
-     * maintained by your application.
-     *
-     * @param token The new token.
+     * Method calls Middle Tier service which stores the token in the Mongodb
+     * @param token The new token
      */
-    private void sendRegistrationToServer(String token) {
-        // Add custom implementation, as needed.
-
+    private boolean sendRegistrationToServer(String userId, String token){
+        try {
+            HttpUtilities.SendDeviceTokensToServer(userId, token, getApplicationContext());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
