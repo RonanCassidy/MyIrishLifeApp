@@ -103,7 +103,7 @@ public class UserDetailActivity extends AppCompatActivity {
                             .setMessage("Do you wish to request a call back on this device?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(UserDetailActivity.this,"Your request has been logged. You will receive a call within x hours",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(UserDetailActivity.this,"Your request has been logged. You will receive a call within 24 hours",Toast.LENGTH_LONG).show();
                                     // we can send details of where they are in the app currently at this point
                                 }
                             })
@@ -146,7 +146,7 @@ public class UserDetailActivity extends AppCompatActivity {
                             .setMessage("Do you wish to request a call back on this device?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(UserDetailActivity.this,"Your request has been logged. You will receive a call within x hours",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(UserDetailActivity.this,"Your request has been logged. You will receive a call within 24 hours",Toast.LENGTH_LONG).show();
                                     // we can send details of where they are in the app currently at this point
                                 }
                             })
