@@ -18,13 +18,14 @@ public class MyQrCode extends AppCompatActivity {
     TextView text;
     String QRcode;
 
-    public final static int WIDTH=500;
+    public final static int WIDTH=250;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_qr_code);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getID();
+
         final Account acc = AccountUtilities.GetSavedAccount(this, this);
         // create thread to avoid ANR Exception
         Thread t = new Thread(new Runnable() {
@@ -33,7 +34,7 @@ public class MyQrCode extends AppCompatActivity {
                 QRcode= acc.name;
                 try {
                     synchronized (this) {
-                        wait(5000);
+                        wait(20);
                         // runOnUiThread method used to do UI task in main thread.
                         runOnUiThread(new Runnable() {
                             @Override
@@ -82,8 +83,9 @@ public class MyQrCode extends AppCompatActivity {
                 pixels[offset + x] = result.get(x, y) ? getResources().getColor(R.color.black):getResources().getColor(R.color.white);
             }
         }
+
         Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        bitmap.setPixels(pixels, 0, 500, 0, 0, w, h);
+        bitmap.setPixels(pixels, 0, WIDTH, 0, 0, w, h);
         return bitmap;
     } /// end of this method
 }
