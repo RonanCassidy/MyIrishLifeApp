@@ -206,6 +206,8 @@
         android:text=""
         android:textColor="@color/bb_darkBackgroundColor"
         android:layout_centerVertical="true"
+        android:layout_alignBaseline="@+id/Vartext1"
+        android:layout_alignBottom="@+id/Vartext1"
         android:layout_toRightOf="@+id/DOBtext"
         android:layout_toEndOf="@+id/DOBtext" />
 
