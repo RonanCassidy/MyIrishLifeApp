@@ -49,7 +49,7 @@
         <activity android:name=".WebActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".DrawerActivity" />
+                android:value=".Toolbox" />
         </activity>
 
         <activity android:name=".PolicyDetailsActivity">

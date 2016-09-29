@@ -26,13 +26,13 @@ public class ProcessDeviceToken extends AsyncTask<Void, Void, Boolean> {
 
     private final String targetURL;
     private final String targetMethod;
-    private final String urlParameters;
+    private final String username;
     private final String token;
 
-    ProcessDeviceToken(String targetURL, String method, String urlParameters, String token) {
+    ProcessDeviceToken(String targetURL, String method, String username, String token) {
         this.targetURL = targetURL;
         this.targetMethod = method;
-        this.urlParameters = urlParameters;
+        this.username = username;
         this.token = token;
     }
 
@@ -42,7 +42,8 @@ public class ProcessDeviceToken extends AsyncTask<Void, Void, Boolean> {
         //URL addDeviceURL = null;
 
         try {
-            myurl = new URL(targetURL + targetMethod + "?" + urlParameters + token);
+            //userID=Yvonne.Mongo856&deviceID=
+            myurl = new URL(targetURL + targetMethod + "?" + "userID=" + username + "&deviceID=" + token);
             //addDeviceURL = new URL("http://10.233.204.232:9090/autService.asmx/StoreUserDevice?userID=Yvonne.Mongo856&deviceID="+token);
         } catch (MalformedURLException e) {
             e.printStackTrace();

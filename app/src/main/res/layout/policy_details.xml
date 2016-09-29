@@ -33,7 +33,7 @@
         android:layout_toRightOf="@+id/PolicyHoldertext"
         android:layout_below="@+id/PolicyDetails"
         android:paddingLeft="50dp"
-        android:text="PolicyHolder Name Here"
+        android:text=""
         android:layout_marginBottom="20dp"
         android:textColor="@color/bb_darkBackgroundColor"
         />
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="50dp"
-        android:text="DOB Here"
+        android:text=""
         android:layout_below="@+id/PolicyHolder"
         android:layout_toRightOf="@+id/PolicyHoldertext"
         android:layout_toEndOf="@+id/PolicyHoldertext"
@@ -99,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="50dp"
-        android:text="PlaneName Here"
+        android:text=""
         android:layout_alignBaseline="@+id/PlanNametext"
         android:layout_alignBottom="@+id/PlanNametext"
         android:layout_toRightOf="@+id/PlanNumbertext"
@@ -111,7 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="50dp"
-        android:text="PlaneNumber Here"
+        android:text=""
         android:layout_alignBaseline="@+id/PlanNumbertext"
         android:layout_alignBottom="@+id/PlanNumbertext"
         android:layout_toRightOf="@+id/PlanNumbertext"
@@ -123,7 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="50dp"
-        android:text="PlaneType Here"
+        android:text=""
         android:layout_alignBaseline="@+id/PlanTypetext"
         android:layout_alignBottom="@+id/PlanTypetext"
         android:layout_toRightOf="@+id/PlanNumbertext"
@@ -158,7 +158,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="50dp"
-        android:text="Var Data 2"
+        android:text=""
         android:layout_alignBaseline="@+id/Vartext2"
         android:layout_alignBottom="@+id/Vartext2"
         android:layout_alignLeft="@+id/Var1"
@@ -181,30 +181,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="50dp"
-        android:text="Var Data 3"
+        android:text=""
         android:layout_alignBaseline="@+id/Vartext3"
         android:layout_alignBottom="@+id/Vartext3"
         android:layout_alignLeft="@+id/Var2"
         android:layout_alignStart="@+id/Var2"
         android:textColor="@color/bb_darkBackgroundColor"/>
 
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text ="Further Details"
-        android:paddingRight="15dp"
-        android:paddingLeft="15dp"
-        android:layout_marginTop="50dp"
-        android:id="@+id/btnfurtherdetails"
-        android:layout_below="@+id/Vartext3"
-        android:layout_alignLeft="@+id/PolicyDetails"
-
-        android:textSize="15dp"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:background="#50c9b5"
-        android:onClick="FurtherDetailsClick" />
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
@@ -220,10 +203,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="50dp"
-        android:text="Var Data 1"
+        android:text=""
         android:textColor="@color/bb_darkBackgroundColor"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/DOBtext"
         android:layout_toEndOf="@+id/DOBtext" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text ="Further Details"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:id="@+id/btnfurtherdetails"
+
+        android:textSize="15dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="#50c9b5"
+        android:onClick="FurtherDetailsClick"
+        android:layout_below="@+id/Vartext3"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

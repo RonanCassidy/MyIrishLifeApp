@@ -55,6 +55,7 @@ public class GetUserPolicyInformation extends AsyncTask<Void, Void, Boolean> {
     protected Boolean doInBackground(Void... params)
     {
         URL myurl = null;
+
         try {
             myurl = new URL(targetURL + targetMethod + "?" + urlParameters);
         } catch (MalformedURLException e) {
@@ -139,19 +140,5 @@ public class GetUserPolicyInformation extends AsyncTask<Void, Void, Boolean> {
         }
         return cell;
     }
-
-    /*private Button CreateButtonForPolicyNumber(String text)
-    {
-        Button cell = new Button(this.context);
-        cell.setText(text);
-        cell.setTextSize(18);
-        cell.setWidth(18);
-        cell.setTextColor(Color.BLACK);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(300, LinearLayout.LayoutParams.MATCH_PARENT);
-        cell.setBackgroundColor(Color.WHITE);
-        cell.(R.style.BorderLessButton);
-        cell.setLayoutParams(params);
-        return cell;
-    }*/
 }
 

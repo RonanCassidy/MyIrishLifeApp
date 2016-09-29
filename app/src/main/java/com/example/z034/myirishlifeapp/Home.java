@@ -4,7 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+
 import android.content.IntentFilter;
+
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -13,7 +15,10 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.util.Log;
+
+import android.view.MotionEvent;
 import android.widget.Toast;
 
 import android.content.Intent;
@@ -38,13 +43,14 @@ import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
 public class Home extends AppCompatActivity {
-    boolean onStart=true;
+
 
     private String userId;
     private String Pin;
     private JSONArray PolicyInfo = null;
     private GridLayout PolicyGrid;
     private Button addPolicy;
+
 
     // PUSH NOTE
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
@@ -56,6 +62,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         PolicyGrid = (GridLayout) findViewById(R.id.HomePolicyGrid);
         addPolicy = (Button) findViewById(R.id.AddPolicy);
@@ -72,7 +79,6 @@ public class Home extends AppCompatActivity {
         addPolicyIntent.putExtra(ApplicationConstants.Pin, Pin);
         startActivity(addPolicyIntent);
     }
-
     // PUSH NOTE -start
     public void connectToGCMServer(){
         final int duration = Toast.LENGTH_SHORT;
@@ -99,8 +105,9 @@ public class Home extends AppCompatActivity {
 
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
-            Intent intent = new Intent(this, GCMRegistrationIntentService.class);
-            startService(intent);
+            Intent intentService = new Intent(this, GCMRegistrationIntentService.class);
+            intentService.putExtra(ApplicationConstants.Username, getIntent().getStringExtra(ApplicationConstants.Username));
+            startService(intentService);
         }
     }
     @Override

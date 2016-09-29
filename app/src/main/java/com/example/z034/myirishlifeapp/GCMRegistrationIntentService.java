@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -32,6 +33,7 @@ import java.net.URLConnection;
 public class GCMRegistrationIntentService extends IntentService {
     private static final String TAG = "RegIntentService";
     private static final String[] TOPICS = {"global"};
+    private String userid;
 
     public GCMRegistrationIntentService() {
         super(TAG);
@@ -58,10 +60,13 @@ public class GCMRegistrationIntentService extends IntentService {
             // TODO: Implement this method to send any registration to your app's servers.
             //sendRegistrationToServer(token);
 
-            sendRegistrationToServer(token);
-
+            Bundle extras = intent.getExtras();
+            userid = extras.getString(ApplicationConstants.Username);
+            sendRegistrationToServer(userid, token);
+            Log.i(TAG, "Token sent to server. About to subscribe");
             // Subscribe to topic channels
             subscribeTopics(token);
+            Log.i(TAG, "Token subscribed");
 
             // You should store a boolean that indicates whether the generated token has been
             // sent to your server. If the boolean is false, send the token to your server,
@@ -85,9 +90,9 @@ public class GCMRegistrationIntentService extends IntentService {
      * Method calls Middle Tier service which stores the token in the Mongodb
      * @param token The new token
      */
-    private boolean sendRegistrationToServer(String token){
+    private boolean sendRegistrationToServer(String userId, String token){
         try {
-            HttpUtilities.SendDeviceTokensToServer(token);
+            HttpUtilities.SendDeviceTokensToServer(userId, token, getApplicationContext());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
