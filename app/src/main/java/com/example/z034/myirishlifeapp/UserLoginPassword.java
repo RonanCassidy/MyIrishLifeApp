@@ -1,10 +1,19 @@
 package com.example.z034.myirishlifeapp;
 
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,6 +28,13 @@ public class UserLoginPassword extends AsyncTask<Void, Void, Boolean> {
     private final String UserID;
     private final String Password;
     private String Response;
+
+    // PUSH NOTE
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private static final String TAG = "PushNoteActivity";
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
+    private boolean isReceiverRegistered;
+    boolean onStart=true;
 
     UserLoginPassword(String targetURL, String method, String userId, String password, Context context, Intent intent)
     {

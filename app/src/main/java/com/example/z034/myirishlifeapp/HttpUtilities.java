@@ -26,10 +26,13 @@ import java.net.*;
 public class HttpUtilities {
 
     public static final String AuthenticateServerUrl = "http://52.174.106.218/AutService.asmx/";
+    public static final String AzureServerUrl = "http://10.233.204.232:9090/AutService.asmx/";
     public static final String AuthenticateWithPin = "AuthenticateWithPin";
     public static final String GetUserPolicyDetails = "GetUserPolicyDetails";
     public static final String AuthenticateWithPassword = "AuthenticateWithPassword";
     public static final String GetUserPolicyInfo = "GetUserPolicyList";
+    public static final String StoreUserDevice = "StoreUserDevice";
+    public static final String Mongo = "userID=Yvonne.Mongo856&deviceID=";
 
 
     public static void AuthenticateUserWithPassword(String username, String password, Context context, Intent intent)
@@ -56,6 +59,12 @@ public class HttpUtilities {
     {
         GetUserPolicyInformation getNewUserInfoTask = new GetUserPolicyInformation(AuthenticateServerUrl, GetUserPolicyInfo, userId, pin, context, intent, PolicyGrid);
         getNewUserInfoTask.execute((Void) null);
+    }
+
+    public static void SendDeviceTokensToServer(String token)
+    {
+        ProcessDeviceToken processDeviceToken = new ProcessDeviceToken(AuthenticateServerUrl, StoreUserDevice, Mongo, token);
+        processDeviceToken.execute((Void) null);
     }
 
     public static String GetServerResponse(URL myurl) {

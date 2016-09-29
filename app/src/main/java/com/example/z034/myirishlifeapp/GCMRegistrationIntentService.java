@@ -12,8 +12,18 @@ import com.google.android.gms.gcm.GcmPubSub;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.Object;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Created by y424 on 23/09/2016.
@@ -46,6 +56,8 @@ public class GCMRegistrationIntentService extends IntentService {
             Log.i(TAG, "GCM Registration Token: " + token);
 
             // TODO: Implement this method to send any registration to your app's servers.
+            //sendRegistrationToServer(token);
+
             sendRegistrationToServer(token);
 
             // Subscribe to topic channels
@@ -70,14 +82,17 @@ public class GCMRegistrationIntentService extends IntentService {
     /**
      * Persist registration to third-party servers.
      *
-     * Modify this method to associate the user's GCM registration token with any server-side account
-     * maintained by your application.
-     *
-     * @param token The new token.
+     * Method calls Middle Tier service which stores the token in the Mongodb
+     * @param token The new token
      */
-    private void sendRegistrationToServer(String token) {
-        // Add custom implementation, as needed.
-
+    private boolean sendRegistrationToServer(String token){
+        try {
+            HttpUtilities.SendDeviceTokensToServer(token);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
