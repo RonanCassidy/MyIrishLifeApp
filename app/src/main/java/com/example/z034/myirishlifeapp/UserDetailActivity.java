@@ -57,8 +57,10 @@ public class UserDetailActivity extends AppCompatActivity {
     private static final String TAG_MOBILE = "mobile";
     private static final String TAG_ADDRESS = "address";
 
+
     private static final String FETCH_URL= "/AutService.asmx/GetUserDetails"; //azure
     private static final String SAVE_URL = "/AutService.asmx/SaveUserDetails"; // azure
+
     private static final String POSTCODE_LOOKUP_URL = "https://api.autoaddress.ie/2.0/PostcodeLookup";
     private static final String AUTOADDRESS_KEY = "10F069B3-5A3F-4bfc-B2CB-F062DA84C102";
 

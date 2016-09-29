@@ -38,7 +38,9 @@ import java.net.URL;
 public class InitiateWebSessionActivity extends AppCompatActivity {
     boolean onStart=true;
     static final int SCAN_QR_CODE = 2;
+
     private static final String WEB_SESSION_URL = "/AutService.asmx/AddSession";
+
     private String userid, pincode;
 
     @Override

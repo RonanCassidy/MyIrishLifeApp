@@ -35,7 +35,9 @@ import java.net.URL;
 
 public class AddPolicyActivity extends AppCompatActivity {
     static final int SCAN_QR_CODE = 1;
+
     private static final String ADD_POLICY_URL = "/AutService.asmx/AddPolicyToUser"; // azure
+
     private EditText policyIdText;
     boolean onStart=true;
 

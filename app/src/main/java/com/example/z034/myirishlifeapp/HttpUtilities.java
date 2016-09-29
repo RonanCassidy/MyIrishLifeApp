@@ -26,11 +26,14 @@ import java.net.*;
 
 public class HttpUtilities {
 
+
     public static final String AuthenticateServerUrl = "/AutService.asmx/";
+
 
     public static final String AuthenticateWithPin = "AuthenticateWithPin";
     public static final String GetUserPolicyDetails = "GetUserPolicyDetails";
     public static final String AuthenticateWithPassword = "AuthenticateWithPassword";
+    public static final String RequestCallBackmethod = "RequestCallback";
     public static final String GetUserPolicyInfo = "GetUserPolicyList";
 
 
@@ -45,6 +48,7 @@ public class HttpUtilities {
         UserLoginPin loginWithPin = new UserLoginPin(getEndpoint(context), AuthenticateWithPin, username, pin, pinField, context);
         loginWithPin.execute((Void) null);
     }
+
 
     public static void GetPolicyData(String userId, String pin, Context context, Intent intent, GridLayout PolicyGrid)
     {
