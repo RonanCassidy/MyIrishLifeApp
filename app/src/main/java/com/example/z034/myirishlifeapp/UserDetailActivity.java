@@ -57,10 +57,8 @@ public class UserDetailActivity extends AppCompatActivity {
     private static final String TAG_MOBILE = "mobile";
     private static final String TAG_ADDRESS = "address";
 
-    private static final String FETCH_URL= "http://52.174.106.218/AutService.asmx/GetUserDetails"; //azure
-    //private static final String FETCH_URL= "http://10.233.204.232:9090/AutService.asmx/GetUserDetails"; //internal
-    private static final String SAVE_URL = "http://52.174.106.218/AutService.asmx/SaveUserDetails"; // azure
-    //private static final String SAVE_URL = "http://10.233.204.232:9090/AutService.asmx/SaveUserDetails"; // internal
+    private static final String FETCH_URL= "/AutService.asmx/GetUserDetails"; //azure
+    private static final String SAVE_URL = "/AutService.asmx/SaveUserDetails"; // azure
     private static final String POSTCODE_LOOKUP_URL = "https://api.autoaddress.ie/2.0/PostcodeLookup";
     private static final String AUTOADDRESS_KEY = "10F069B3-5A3F-4bfc-B2CB-F062DA84C102";
 
@@ -310,6 +308,7 @@ public class UserDetailActivity extends AppCompatActivity {
         HttpURLConnection conn;
         URL url = null;
 
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -323,8 +322,16 @@ public class UserDetailActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+            String server = "";
             try {
-                url = new URL(FETCH_URL+"?userID="+userid+"&pin=" + pincode);
+                server = Util.getProperty("server",getApplicationContext());
+            } catch (IOException e) {
+                e.printStackTrace();
+            };
+
+            try {
+                url = new URL(server + FETCH_URL+"?userID="+userid+"&pin=" + pincode);
+                System.out.println("***" + url);
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -427,8 +434,15 @@ public class UserDetailActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+            String server = "";
             try {
-                url = new URL(SAVE_URL+"?"+parameters);
+                server = Util.getProperty("server",getApplicationContext());
+            } catch (IOException e) {
+                e.printStackTrace();
+            };
+
+            try {
+                url = new URL(server + SAVE_URL+"?"+parameters);
                 System.out.println("***" + url);
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block

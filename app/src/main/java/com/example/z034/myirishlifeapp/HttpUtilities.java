@@ -26,8 +26,8 @@ import java.net.*;
 
 public class HttpUtilities {
 
+    public static final String AuthenticateServerUrl = "/AutService.asmx/";
 
-    public static final String AuthenticateServerUrl = "AutService.asmx/";
     public static final String AuthenticateWithPin = "AuthenticateWithPin";
     public static final String GetUserPolicyDetails = "GetUserPolicyDetails";
     public static final String AuthenticateWithPassword = "AuthenticateWithPassword";
@@ -36,22 +36,19 @@ public class HttpUtilities {
 
     public static void AuthenticateUserWithPassword(String username, String password, Context context, Intent intent)
     {
-        String url = context.getResources().getString(R.string.middleTierServer) + AuthenticateServerUrl;
-        UserLoginPassword loginWithPassword = new UserLoginPassword(url, AuthenticateWithPassword, username, password, context, intent);
+        UserLoginPassword loginWithPassword = new UserLoginPassword(getEndpoint(context), AuthenticateWithPassword, username, password, context, intent);
         loginWithPassword.execute((Void) null);
     }
 
     public static void AuthenticateUserWithPin(String username, String pin, EditText pinField, Context context)
     {
-        String url = context.getResources().getString(R.string.middleTierServer) + AuthenticateServerUrl;
-        UserLoginPin loginWithPin = new UserLoginPin(url, AuthenticateWithPin, username, pin, pinField, context);
+        UserLoginPin loginWithPin = new UserLoginPin(getEndpoint(context), AuthenticateWithPin, username, pin, pinField, context);
         loginWithPin.execute((Void) null);
     }
 
     public static void GetPolicyData(String userId, String pin, Context context, Intent intent, GridLayout PolicyGrid)
     {
-        String url = context.getResources().getString(R.string.middleTierServer) + AuthenticateServerUrl;
-        GetUserPolicyInformation getNewUserInfoTask = new GetUserPolicyInformation(url, GetUserPolicyInfo, userId, pin, context, intent, PolicyGrid);
+        GetUserPolicyInformation getNewUserInfoTask = new GetUserPolicyInformation(getEndpoint(context), GetUserPolicyInfo, userId, pin, context, intent, PolicyGrid);
         getNewUserInfoTask.execute((Void) null);
     }
 
@@ -84,5 +81,16 @@ public class HttpUtilities {
             e.printStackTrace();
             return false;
         }
+    }
+
+    private static String getEndpoint(Context context){
+        String server = "";
+        try {
+            server = Util.getProperty("server",context);
+        } catch (IOException e) {
+            e.printStackTrace();
+        };
+
+        return server + AuthenticateServerUrl;
     }
 }
